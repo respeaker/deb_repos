@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "remove" ] ; then
+    BIN=/usr/bin
+    update-alternatives --remove \
+	vncviewer $BIN/xtightvncviewer
+fi
+
+#DEBHELPER#
+
+exit 0

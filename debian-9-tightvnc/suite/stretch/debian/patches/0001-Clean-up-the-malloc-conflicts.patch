@@ -1,0 +1,61 @@
+From f3b1633a9d6d072895354e3c0f1fdfc47263ffed Mon Sep 17 00:00:00 2001
+From: Lauri Kasanen <cand@gmx.com>
+Date: Fri, 5 Jun 2015 07:53:19 -0300
+Subject: [PATCH 1/2] Clean up the malloc conflicts
+
+Signed-off-by: Lauri Kasanen <cand@gmx.com>
+---
+ Xvnc/lib/Xdmcp/Alloc.c               | 2 +-
+ Xvnc/programs/Xserver/hw/vnc/rfb.h   | 1 +
+ Xvnc/programs/Xserver/include/misc.h | 6 ------
+ 3 files changed, 2 insertions(+), 7 deletions(-)
+
+diff --git a/Xvnc/lib/Xdmcp/Alloc.c b/Xvnc/lib/Xdmcp/Alloc.c
+index 758e1c6..756dd5c 100644
+--- a/Xvnc/lib/Xdmcp/Alloc.c
++++ b/Xvnc/lib/Xdmcp/Alloc.c
+@@ -31,7 +31,7 @@ in this Software without prior written authorization from the X Consortium.
+ 
+ /* stubs for use when Xalloc, Xrealloc and Xfree are not defined */
+ 
+-extern char	*malloc (), *realloc ();
++#include <stdlib.h>
+ 
+ unsigned long *
+ Xalloc (amount)
+diff --git a/Xvnc/programs/Xserver/hw/vnc/rfb.h b/Xvnc/programs/Xserver/hw/vnc/rfb.h
+index b2e8e1d..ca11290 100644
+--- a/Xvnc/programs/Xserver/hw/vnc/rfb.h
++++ b/Xvnc/programs/Xserver/hw/vnc/rfb.h
+@@ -31,6 +31,7 @@
+ #include <vncauth.h>
+ #include <zlib.h>
+ #include <stdarg.h>
++#include <stdlib.h>
+ 
+ /* It's a good idea to keep these values a bit greater than required. */
+ #define MAX_ENCODINGS 10
+diff --git a/Xvnc/programs/Xserver/include/misc.h b/Xvnc/programs/Xserver/include/misc.h
+index f01f3e9..3de89ee 100644
+--- a/Xvnc/programs/Xserver/include/misc.h
++++ b/Xvnc/programs/Xserver/include/misc.h
+@@ -158,16 +158,10 @@ typedef struct _xReq *xReqPtr;
+ 
+ #define min(a, b) (((a) < (b)) ? (a) : (b))
+ #define max(a, b) (((a) > (b)) ? (a) : (b))
+-#if !defined(AMOEBA) && !defined(__EMX__)
+-#ifndef abs
+-#define abs(a) ((a) > 0 ? (a) : -(a))
+-#endif
+-#else /* AMOEBA || __EMX__ */
+ /* abs() is a function, not a macro; include the file declaring
+  * it in case we haven't done that yet.
+  */  
+ #include <stdlib.h>
+-#endif /* AMOEBA */
+ #ifndef Fabs
+ #define Fabs(a) ((a) > 0.0 ? (a) : -(a))	/* floating absolute value */
+ #endif
+-- 
+2.1.4
+

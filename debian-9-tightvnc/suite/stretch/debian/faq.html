@@ -1,0 +1,812 @@
+<html>
+<head>
+
+   <meta name="keywords" content="VNC, AT&T Laboratories Cambridge, Virtual Network Computing, thin-client, FAQ">
+
+
+
+<title>
+
+VNC Frequently Asked Questions (FAQ)
+
+</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" vlink="#000080" marginheight="0" topmargin="0" leftmargin="0" marginwidth="0">
+
+<center>
+
+<h1>
+
+Virtual Network Computing</h1></center>
+
+<hr>
+<h2>Note</h2>
+<p> This version was edited by 
+ <A HREF="mailto:edward@debian.org">Edward Betts</A> and <A HREF="mailto:opal@debian.org">Ola Lundqvist</A> for the Debian Operating 
+ System. The original version is available at the 
+ <a href="http://www.uk.research.att.com/vnc/faq.html">VNC Home Page (extern)</a>. </p>
+<hr>
+
+<H1>VNC Frequently Asked Questions (FAQ)</H1>
+
+
+
+This isn't intended to be an introduction to VNC - have a look at the <a href="start.html">Getting
+
+Started</a> page first.
+
+<p>This list is being updated regularly, so, particularly as you are reading
+
+a mirrored copy, it's worth checking <a href="http://www.uk.research.att.com/vnc/faq.html">the
+
+original</a> from time to time.  The <a href="http://www.uk.research.att.com/vnc/archives/">archives</a>
+
+of the <a href="http://www.uk.research.att.com/vnc/intouch.html">mailing list</a> are also available, and
+
+they can be a good source of help - try searching them <a href="http://www.uk.research.att.com/search.html">here</a>.</p>
+
+<p><b>Historical Note</b>:  With the release of 3.3.2 we have moved
+
+some of the old questions into the <a href="http://www.uk.research.att.com/vnc/oldfaq.html">Old FAQ page</a>
+
+because they should not apply to recent versions.  As with most software,
+
+it's worth checking to make sure you've got the lastest version.</p>
+
+
+
+
+
+<H1>VNC Frequently Asked Questions</H1>
+
+<H2>Getting Started</H2><DL>
+
+<DT> <B>
+Where can I get VNC?</B></DT>
+
+<DD>The latest versions of VNC and this documentation are
+always available from the AT&T Laboratories Cambridge web site at <a href="http://www.uk.research.att.com/vnc">http://www.uk.research.att.com/vnc</a>.
+In addition, various add-ons, extras, and ports to other platforms can
+be found on the <a href="http://www.uk.research.att.com/vnc/contribs.html">contribs</a> page.</DD>
+
+<DT> <B>
+I thought this was something to do with ORL? What's the Olivetti/Oracle
+link here?</B></DT>
+
+<DD>In January 1999, <a href="http://www.att.com/">AT&T</a>
+acquired ORL, the Olivetti Research Laboratory founded 12 years earlier,
+and recently jointly funded by <a href="http://www.oracle.com">Oracle</a>,
+to create AT&T Laboratories Cambridge. </DD>
+<DT> <B>
+I started the X server using vncserver, but it dies with a message "Could
+not open default font 'fixed'. "</B></DT>
+
+<DD>The 'fixed' font is needed for the server to start
+- if it can't find it, you need to specify the correct font path for your
+machine in the 'vncserver' script.  If you're not sure what the path
+should be, type 'xset q'  from within a normal X session. One of the
+things reported is the font path used by your current X server, which is
+generally the right thing to use for Xvnc.  On some platforms you
+may need to use a colon as a separator in the font path instead of a comma.
+If you're on a recent version of Linux but still using VNC version 3.3.1,
+you may have compressed fonts which VNC doesn't understand. Either upgrade
+or see the <a href="http://www.uk.research.att.com/vnc/oldfaq.html">Old FAQ</a>.</DD>
+
+<DD>The VNC server can also get upset if you have directories on
+your font path which don't actually exist on your system.  Make sure
+you remove those. Also note that older versions of the Xvnc server, by
+default, act as if they had a resolution of 100dpi.  Some RedHat
+installations, for example, only install 75dpi fonts, so you may need
+to install the missing font RPMs from your distribution or use the
+-dpi option to Xvnc, or update to the latest version. </DD>
+
+<DT> <B>I get errors like "failed to bind listener" and "Failed to establish
+all listening sockets" in the log file.</B></DT>
+
+<DD>This is probably due to the permissions on /tmp/.X11-unix.
+You may well see this if you update to Solaris 2.7 or Redhat 6.0, for
+example. See the section below entitled "Why can I only run
+vncserver/Xvnc as root?".</DD>
+
+<DT> <B>Vncserver seems to be dying quietly without putting any messages in
+the log file.</B></DT>
+
+<DD>Check that the Xvnc process really has died. If so, then check
+that your VNC font path (set by uncommenting lines in the vncserver
+script) only includes directories which actually exist.  The XFree86
+code in older versions of Xvnc seems to have a problem which causes
+the server to die quietly if non-existent directories are
+searched. Upgrading to 3.3.3 or later should reduce these
+problems.</DD>
+<DT> <B>
+ I connected to my Unix VNC server and I just see a grey desktop with
+a cursor.</B></DT>
+
+<DD>After the vncserver script has started the Xvnc server,
+it then runs your ~/.vnc/xstartup script.  By default this will try
+to start the twm window manager, but if twm isn't on your path, or if you
+prefer something else, you can edit xstartup.  The log file may also
+give you clues about what is happening.</DD>
+
+<DT> <B>
+The log file is showing an error message from xrdb / Xlib.</B></DT>
+
+<DD>By default, the first thing your xstartup script does
+is to run xrdb to load your resources.  So if the Xvnc server has
+not started for any reason, the xrdb is often the first thing to notice
+it and print an error.  (Though if you're getting a 'command not found'
+message, then xrdb is probably not on your path - you need to find where
+it is on your system and add it.)</DD>
+
+<DD>If you get something like 'connection refused' or 'Can't
+connect: errno = 111', the Xvnc server probably isn't there.  So you
+should check whether the Xvnc process is actually running, and whether
+there is anything earlier in the log file indicating why it might have
+died.  By far the most common reason for the server not starting is
+that it can't find the 'fixed' font (see above). Other possibilities are
+that the server has quietly crashed, or that it is taking a very long time
+to start up.  The vncserver script has a 3-second delay before running
+xstartup, but in extreme cases this may not be enough.  Lastly, the
+DISPLAY variable used by vncserver is based on the results given by the
+'uname - n' command. If your applications cannot resolve this to the right
+IP address, perhaps because of funny settings in /etc/hosts, then they
+won't be able to connect. </DD>
+
+<DD>If you get a 'Client is not authorized to connect to
+Server' or similar message, there's something wrong with the X authority
+setup - perhaps xauth is not on your path? You could try using xhost to
+bypass this temporarily, but we wouldn't recomend this as a long-term solution. 
+There should be some indication in the log file if xauth has failed.</DD>
+
+<DT> <B>
+The Java client doesn't work in my browser.</B></DT>
+
+<DD>Several Java implementations have bugs which upset the VNC
+applet.  Try pressing Reload. We've seen this problem on Netscape
+Navigator 3 and Internet Explorer 5.  Note, too, that the Java applet
+often won't work if you are accessing the server via a web proxy. Make
+a direct connection if you can.
+</DD>
+
+<DT> <B>
+My viewer failed to connect to my server!</B></DT>
+
+<DD>VNC relies on a correctly-configured and operational
+TCP/IP network, so please make 100% sure that your TCP/IP setup is right
+before you start asking questions on the mailing list.  Here are some
+things you should check before assuming it's a VNC problem; consult your
+local expert if you don't know how to check them:
+
+<ul>
+<li>
+Can you ping the server machine from the client?</li>
+
+<li>
+Is the VNC server definitely running on the server machine?</li>
+
+<li>
+The server listens on port 5900+displaynumber. Can you telnet to this port
+from the client machine?</li>
+
+<li>
+Have you specified the address correctly to the viewer? If you're using a display number other than zero for the server, (usually the case on Unix machines), did you remember to specify it?</li>
+
+<li>
+Is the server name known to the DNS?  Try using an explicit IP address
+instead of a name (eg. 123.456.78.9:0 instead of snoopy:0).</li>
+
+<li>
+Do you have any firewalls or proxies in the way that could be blocking
+acess?</li>
+
+<li>
+If using the java client, did you remember to specify the correct port
+as part of the URL? (eg. <a href="http://snoopy:5800">http://snoopy:5800</a>)?</li>
+
+<li>
+Can you try running either the server, or the client, or both, on different
+machines on your network to find whether the problem is at one end or the
+other?</li>
+
+<li>
+Can you try running the software on a different architecture?  eg.,
+if you are  having problems viewing a PC from another PC, can you
+try connecting from a Unix machine?</li>
+</ul>
+
+</DD>
+
+</DL><HR>
+
+<H2>Running the programs</H2><DL>
+
+<DT> <B>My X VNC server is working, but I don't see my normal environment. How can I change the Window manager etc?</B></DT>
+
+<DD>The window manager is started by the ~/.vnc/xstartup script.  We use
+twm, as this is available on almost all Unix platforms.  Edit the
+script if you'd rather replace it with something else.  On many platforms
+you can, as an alternative, just make xstartup a link to whatever script
+normally starts your X environment.
+<br></br>If you want to be more sophisticated, you can specify the -name option
+to vncserver, and then take different actions in the xstartup script based
+on the name given. For example:
+<pre>case "$VNCDESKTOP" in
+kde)
+        startkde &
+        ;;
+*)
+        xterm -geometry 40x10+40+40 -ls -title "$VNCDESKTOP Desktop" &
+        twm &
+        ;;
+esac
+</pre>
+</DD>
+
+<DT> <B>
+Why can I only run vncserver/Xvnc as root?</B></DT>
+
+<DD>The most likely reason for this is that Xvnc can't
+create the unix domain socket (the path for this unix domain socket is
+usually /tmp/.X11-unix/Xn).  Try making sure that users can write
+to this directory by making it world-writable, i.e. <br></br>
+<tt>chmod 01777 /tmp/.X11-unix</tt><br></br> 
+An alternative is to set the Xvnc binary to have the same
+permissions as your normal X server, but this may be more of a security
+risk.</DD>
+
+<DT> <B>
+Can I remote the normal X display of my workstation (display :0) in
+the same way as the Windows server does?</B></DT>
+
+<DD>It would be possible to add VNC support to a standard
+X server, so that it operated this way, but we have no plans to do so. 
+It shouldn't be too difficult, if you have the full source code for your
+X server.  Xvnc is basically XFree86 with the hardware-dependent bits
+taken out and VNC put in their place, so it doesn't have drivers for any
+graphics cards. You could have a look at the Xvnc source code to see which
+bits have been added to the standard XFree86, and make the equivalent changes
+on <i>your</i> X server.
+<br></br>We tend to run all our X sessions as VNC sessions and only use the
+local X server to run the viewer.  It's very fast when on the same
+machine as the server! If you feel that it's overkill to run two X servers
+on the same machine, you might consider Ganesh Varadarajan's  svgalib-based
+viewer, available from the <a href="http://www.uk.research.att.com/vnc/contribs.html">contribs</a> page.</DD>
+
+<DT> <B>
+What X Visual does Xvnc use?</B></DT>
+
+<DD>By default, vncserver will start Xvnc with the same
+depth as the current X display, if there is one, or 8 bits deep if there
+isn't.  We've tried to steer clear of colour maps as much as possible
+and normally use "true colour", even when there are only 8 bits per pixel.</DD>
+
+<DD>Unfortunately some X applications don't cope too well
+with an 8 bit TrueColor visual.   You can make Xvnc use the more
+normal PseudoColor visual by giving a "-cc 3" option to vncserver.</DD>
+
+<DT> <B>
+Can I cut and paste between the viewer and the server?</B></DT>
+
+<DD>VNC supports copying and pasting of ASCII text in both
+directions, provided the viewer and server allow it.  When the clipboard
+changes on the machine running the viewer, the changes are copied to the
+server and vice versa.  Some notable exceptions:</DD>
+
+<ul>
+<li>
+X has more than one method of using the clipboard and different applications
+do it different ways. Emacs and xterm should just work. If you find that
+your X application doesn't work via VNC, you can generally use the
+<tt>xcutsel</tt>
+program to copy the clipboard between the different X methods.  VNC
+uses Cut_Buffer0, so if you select text in Unix Netscape, for example,
+you may need to click 'Copy PRIMARY to 0' before it is accessible at the
+other end of the VNC link.  You can use X resources to make the button labels more meaningful. For example, here's a script:
+<pre>
+#!/bin/sh
+exec xcutsel \
+	-xrm '*quit.borderWidth:0' \
+	-xrm '*quit.height: 1' \
+	-xrm '*quit.label:' \
+	-xrm '*sel-cut.label: Clipboard: out of netscape' \
+	-xrm '*cut-sel.label: Clipboard: into netscape' \
+        -xrm '*font: -*-helvetica-*-r-*-*-*-*-*-*-*-*-*-*'
+</pre>
+</li>
+
+<li>
+Java applets running in the browser cannot access the clipboard of the
+machine on which they are running, so the Java viewer has a clipboard button. 
+This pops up a window displaying the contents of the remote clipboard,
+which should allow you to manipulate it locally.</li>
+</ul>
+
+<DD>The code to do copying <i>from</i> the X server <i>to</i>
+the viewer didn't make it in the original version 3.3.2.  It's back
+in 3.3.2R2 and later, so upgrade if you haven't already!</DD>
+
+<DT> <B>
+There's a memory leak in Xvnc!</B></DT>
+
+<DD>This is fixed in versions 3.3.2r3 and later.   If you're using an older
+distribution you can find a patch for it <a href="http://www.uk.research.att.com/vnc/archives/1998-09/0160.html">here</a>.</DD>
+
+<br></br> 
+<DT> <B>
+Why doesn't Ctrl-Alt-Del work? Why can't I unlock my NT workstation remotely? Why can't I stop the screensaver remotely?</B></DT>
+
+<DD>Make sure you are running a recent version of VNC,
+<b>and
+that you are running it as a service</b>.  From some platforms you
+will not be able to type Ctrl-Alt-Del directly, because it will be caught
+by the local machine. The Windows viewer, for example, has an option on
+its menu to send a Ctrl-Alt-Del to the remote host. In some situations,
+you will find that something like Ctrl-Alt-Backspace or Ctrl-Alt-<Numeric
+keypad Del> may work instead. Screensavers sometimes use a different resolution
+and so can disconnect you when they stop or start - see the next question.</DD>
+
+<DT> <B>When I connect using VNC and then log into my Windows
+machine, I get disconnected and have to reconnect!</B></DT>
+
+<DD>Sometimes logging in will involve a change in screen
+resolution, if the user's display settings are different from the
+defaults. If this happens, the server will disconnect you and you will
+need to reconnect to get the new screen size. Just occasionally on NT,
+the mode seems to change resolution temporarily as you log in, and if
+WinVNC happens to see this you can also be disconnected, even if the
+final resolution changes.  
+<br></br>If the user has set a different
+display number in their personal WinVNC properties dialog you will
+also be disconnected.</DD>
+
+<DT> <B>The dead keys don't work on my keyboard</B></DT>
+
+<DD>It's quite a challenge working out how to do international
+keyboard support across different platforms.  We'll sort out dead
+keys, but if you'd like to work out how to do them, we'd be
+grateful.</DD>
+
+<DT> <B>The keyboard doesn't work / keys do strange things!</B></DT>
+
+<DD>There is one common problem which can cause this. 
+If a modifier key, such as Shift, Ctrl or Alt, is pressed, and the viewer
+window then loses focus or dies, the 'key release' message never gets to
+the viewer and hence never gets to the remote server.   The remote
+machine will then think that M is Ctrl-M etc.  We have done various
+things to reduce the chance of this happening; the viewers release various
+modifiers automatically when they lose focus, for example, but it can still
+occur and can be confusing when it does.  The solution is easy: simply
+press and release the modifier key which is stuck.  If you don't know
+which it is, then try them one at a time.</DD>
+
+<H2>General Questions</H2><DL>
+<DT> <B>
+How do I make VNC go faster?</B></DT>
+
+<DD>
+<p>We find VNC to be perfectly acceptable as our normal method of
+accessing Unix desktops on a daily basis.  This is over a 10 Mbit/s
+ethernet on reasonably modern machines, using the X or Win32 viewer.
+Because Windows gives us fewer hints about what it's doing, and
+because we don't have the source code for Windows in the same way that
+we do for X, the WinVNC server has to work harder to find out what's
+changed, and so a really fast machine should make a big speed
+difference.  For more information about how the Windows server works,
+see the <a href="http://www.uk.research.att.com/vnc/winvnc.html">WinVNC documentation</a>.  But if you've
+been disappointed by the speed of the Windows server, don't give up.
+We're improving it gradually, but it'll be a while before it's as fast
+as on Unix. </p>
+
+<p>There are several things that can slow any VNC session
+down, however, and you may like to consider these if you find it too slow:</p>
+
+<ul> 
+<li>
+Unusually 'busy' desktops.  The VNC protocol is very efficient at
+rendering areas of a single colour, such as you generally find on window
+title bars, scrollbars, backgrounds of pages etc. But if, for example,
+you have pretty 24-bit photographs of your girlfriend as your screen background,
+or dithered title-bars on your windows, you may pay a price for the aesthetics.
+<b>A
+colourful or patterned desktop background will probably slow down VNC more
+than any other single factor.</b> We have some suggestions on
+<a href="http://www.uk.research.att.com/vnc/twmideas.html">speeding
+up the twm window manager</a>, some of which will also apply to other environments.</li>
+
+<li>
+Hi-colour desktops.   Don't use 24-bit colour if you can use
+16 or 8 equally well. Remember, on Unix you can run multiple servers, so
+I have a big 16-bit desktop for normal work and a small 8-bit one for when
+I log in from home.  The server can send out a wide range of pixel
+formats, and some viewers will allow you to request a specific format for
+that session. On the Windows viewer, for example, if you click Options...
+when making the connection, you can request only 8-bit pixels from the
+server - useful if the network gets slow.  If you are using a modem,
+I recommend changing the shortcut in the Start menu to include the /8bit
+option - this will then be the default.  Similarly, if you regularly
+connect to a remote WinVNC server, consider whether you could run happily
+at lower resolution. A 1280x1024 screen has more then 4 times as many pixels
+as a 640x480 one, and if all you are doing is checking a printer queue
+you probably don't need them all! Note, though, that on WinVNC, 16-bit
+colour is usually the best to use. See below.</li>
+
+<li>
+Elderly graphics cards or drivers may make quite a difference; this is
+a graphics-intensive application!  On Windows the graphics system
+on the server will affect the speed as well as the one on the viewer.</li>
+
+<li>
+Some applications are not very economical about redrawing their display. 
+Early versions of Unix Netscape, for example, tended to draw everything
+twice when scrolling, which did nothing to help the smoothness under VNC.
+X11Amp flashes its display very fast when in 'pause' mode.</li>
+
+<li>
+Some Java Virtual Machines are particularly fast at reading from the network
+and particularly slow at drawing to the screen, or vice versa.  With
+the Java viewer it is worth experimenting with the encodings available
+from the Options menu, as we sometimes find big differences in speed.</li>
+
+<li>
+If you are connecting to WinVNC, don't change the default settings in the
+Properties box unless you need to.</li>
+
+<li>
+All the standard clients can do local rectangle copying, and this generally
+means that dragging a full window on X is much faster than dragging its
+outline.  If your window manager allows this, it may speed things
+up.   Roman Mitnitski also reports that when he increased the
+mouse dragging threshold (-t option of the server) the performance was
+improved.</li>
+
+<li>
+Generally, with WinVNC, use 16-bit colour (65536 colours) on the server
+if you can. 16-bit is <i>almost</i> always the best depth to use, because:</li>
+
+<ol>
+<li>
+256-colour screens have to be palette-converted before they can be transmitted
+to truecolour clients. Only if the client is 256-colour palette- based
+will you see any performance increase. Even if the client is 256 colour
+truecolour, it'll have to convert via a 32-bit truecolour palette!</li>
+
+<li>
+24-bit screens have to be specially munged via 32-bit since VNC's internal
+colour-handling routines don't work with 24-bit directly.</li>
+
+<li>
+24 and 32-bit screens have to have each pixel looked up in three tables
+to get the converted value.</li>
+
+<li>
+Graphics cards claiming to do 24-bit often actually do 32-bit with munging
+- this in many cases makes 24-bit slower just for general use than 32-bit!</li>
+
+<li>
+Finally, 16-bit involves no palette processing and a single lookup in a
+cached src_format to dest_format table to convert the pixels.</li>
+</ol>
+</ul>
+On slow links, you may also want to use some software to compress the data
+between the two ends. SSH is good for this. See the section on security
+below. 
+</DD>
+
+<DT> <B>Will VNC work through a firewall?</B></DT>
+
+<DD>It depends on your firewall, and whether you want to
+access a server inside your firewall from elsewhere, or a server outside
+your firewall from inside.</DD>
+
+<DD>Generally firewalls are designed to prevent incoming
+connections except to certain well-known machines and ports.  If you
+can configure these to include your VNC server, then you will be able to
+access it from anywhere in the world.  There is a good argument to
+be made for the fact that VNC is less of a security risk than X, so if
+your site doesn't allow X in or out it may still allow VNC. </DD>
+
+<DD>Many modern firewalls will allow outgoing connections
+initiated from inside, so you can often access servers on outside machines. 
+It is straightforward, for example, to recompile the viewer source to include
+SOCKS support, or to make other special arrangements. See the <a href="http://www.uk.research.att.com/vnc/contribs.html">contribs</a>
+page. </DD>
+
+<DD>It's a pity that Java within a browser doesn't automatically
+use SOCKS if the browser is configured to use it.  There's probably
+Java SOCKS support out there somewhere... </DD>
+
+<DD>If your internet access is through a router which does
+Network Address Translation, you may be able to configure the router to
+redirect particular incoming ports to particular machines. So you could
+run WinVNC with a display number of 0 on machine snoopy, and with display
+1 on machine woodstock, then set your router to send port 5900 to snoopy
+and 5901 to woodstock.  See below for information on the other port
+numbers used by VNC.</DD>
+
+<DT> <B>
+Which TCP/IP ports does VNC use?</B></DT>
+
+<DD>A VNC server listens on two ports. The exact port numbers
+depend on the VNC display number, because a single machine may run multiple
+servers. The most important one is 59xx, where xx is the display number. 
+The VNC protocol itself runs over this port. So for most PC servers, the
+port will be 5900, because they use display 0 by default.</DD>
+
+<DD>In addition, VNC servers normally have a small and
+very restricted web server built in, which allows you to connect a browser
+to them and use the Java viewer.  This runs on port 58xx.  Note
+that this is the HTTP port used for downloading pages and applets, but
+once the applet is running it uses 59xx for VNC just like any other viewer. </DD>
+
+<DD>The servers can be changed to listen on other ports
+if, for any reason, these are not suitable for you.  See the server's
+<a href="http://www.uk.research.att.com/vnc/docs.html">documentation</a>
+for more details.  Most of the viewers, if given a display number
+larger than 99, will interpret it as a direct port number and will not
+add 5900. See also the next question.</DD>
+
+<DD>If you are running a viewer in 'listening' mode, where
+it accepts connections initiated by the server, it will listen for incoming
+VNC on port 5500. </DD>
+
+<DT> <B>Can I run VNC over a port normally used for a standard service? (eg. port 21, or port 80)</B></DT>
+
+<DD>In rare circumstances, people may want to do this, perhaps because they have a firewall which only allows connections to certain ports. This can be done, at least for the Windows and Unix servers (see their <a href="http://www.uk.research.att.com/vnc/docs.html">documentation</a>), but the following points need to be borne in mind:
+<ul>
+
+<li>On some systems (eg. most forms of Unix), ordinary users are not
+allowed to run servers on ports below 1024.</li>
+
+<li>You obviously can't run a VNC server on a port that's already
+being used for other things.</li>
+
+<li>Many VNC servers use two ports: one for the VNC server, and one
+for the HTTP server that provides the Java applet (see previous
+question). If you plan to use the Java viewer, you may want to change
+both. Not all servers will allow this at present.</li>
+
+<li>You need to tell the viewer the right display number. Normally,
+display numbers come between 0 and 99. If you specify any number
+smaller than 99, the viewers add 5900 to get the port number. If you
+specify a larger number, the viewers take it as a port number
+directly. So how do you use port numbers lower than 99? You have to
+specify a negative display number!  For example, to connect to a
+server running on port 80 on machine 'snoopy':<br></br>
+
+	<tt> vncviewer snoopy:-5820 </tt><br></br>
+
+because -5820 + 5900 = 80. This may not work with all viewers, but Unix and Windows seem to be fine.
+</li>
+</ul> </DD>
+
+<DT> <B>
+How secure is VNC?</B></DT>
+
+<DD>Access to your VNC desktop generally allows access
+to your whole environment, so security is obviously important. VNC uses
+a challenge-response password scheme to make the initial connection: the
+server sends a random series of bytes, which are encrypted using the password
+typed in, and then returned to the server, which checks them against the
+'right' answer. After that the data is unencrypted and could, in theory,
+be watched by other malicious users, though it's a bit harder to snoop
+a VNC session than, say, a telnet, rlogin, or X session.  Since VNC
+runs over a simple single TCP/IP socket, it is easy to add support for
+SSL or some other encryption scheme if this is important to you, or to
+tunnel it through something like SSH.  
+<p>SSH allows you to redirect remote TCP/IP ports so that all
+traffic is strongly encrypted, and this can be combined with VNC.
+SSH can also compress the encrypted data - this can
+be very useful if using VNC over slow links. See the '<A HREF="http://www.uk.research.att.com/vnc/sshvnc.html">Using SSH with VNC</A>' page.</p>
+</DD>
+
+<DD>While we're on the subject of security, you should
+also be aware that only the first 8 characters of VNC passwords are significant. 
+This is because the 'getpass' call used in the Unix server to read a password
+has this restriction, and the other platforms have been made compatible
+with this. </DD>
+
+<DD> 
+Ray Jones &lt;<a href="mailto:rjones@pobox.com">rjones@pobox.com&gt;
+</a>has
+built a version of VNC which uses SSLeay public key encryption, and Wolfram
+Gloger &lt;<a href="mailto:wmglo@dent.med.uni-muenchen.de">wmglo@dent.med.uni-muenchen.de</a>&gt;
+has built Xvnc with the TCP Wrapper library, allowing you more control
+over which hosts are allowed to connect. See the <a href="http://www.uk.research.att.com/vnc/contribs.html">contribs</a>
+page for details.</DD>
+
+<DT> <B>Are you going to make it more secure?</B></DT>
+
+<DD>We do hope eventually to add better security to VNC, but
+there's also a good argument for <i>not</i> doing so.  If security is
+a concern, it can be better to use a single system such as SSH or
+FreeS/WAN to encrypt all your traffic, rather than relying on the
+individual packages to do the right thing.  Then, if you decide in a
+year's time that one system is too easily crackable, you can replace
+it yourself and all of your communications will benefit.  It may also
+be easier to fit in with corporate security systems this way.</DD>
+
+<DT> <B>Could you do file transfer (e.g. by drag & drop) between the two ends?</B></DT>
+
+<DD>
+<p>
+It's certainly possible, but we aren't going to do it.  File transfer
+seems simple, but is actually rather complicated to do in a cross-
+platform way.  Some examples: How do you map filenames between
+platforms with wildly different naming conventions? How do you cope
+with running out of disk space?  What about permissions?  How do you
+do it on platforms which don't have a concept of drag and drop? Can you interrupt the transfer if it's taking too long? Can you restart it if it gets interrupted?
+</p>
+
+<p>
+Since there are a very large number of perfectly good systems out
+there for transferring files over IP, we aren't planning to
+incorporate it in VNC.  It would probably more than double the size of
+the code, and would introduce all sorts of issues that we, quite
+frankly, aren't interested in! So use the standard file transfer built
+into Windows, or use FTP, or netcat, or the web, or rcp, or ssh, or...
+</p>
+</DD>
+ 
+<DT> <B>Are you planning support for AIX, EPOC,HP-UX, SGI, Win 3.1,
+or my favourite platform ?</B></DT>
+
+<DD>We have provided VNC on all the platforms we use here, and
+it's difficult to provide binaries for anything we don't have, and it
+takes a while to get up to speed on new platforms.  Information about
+third-party ports of VNC to a large number of other platforms can be
+found on the '<a href="http://www.uk.research.att.com/vnc/contribs.html">contribs</a>' page, so check
+there first. Remember that a viewer is available for any platform
+which runs Java, though the speed may vary quite a bit. But for many
+platforms it should not be difficult to compile at least the
+viewer. If anyone tailors the sources for a particular platform we
+will happily either incorporate the changes in the main source
+distributions or make the patches available from our site.  </DD>
+
+<DT> <B>
+Would things work better if you compressed the stream?</B></DT>
+
+<DD><p>VNC incorporates really quite efficient compression
+in the sense that we generally send a tiny fraction of the raw data, probably
+something like 1/20 on average. The details are in the protocol spec if
+anyone's interested.  On a couple of test screen dumps we found that
+the Hextile encoding was more efficient than GIF!  I don't know whether
+this is true in general. </p>
+
+<p>But we haven't done more general encoding after that;
+we've tended to the view that (a) it might introduce too much latency and
+(b) most modems compress pretty well anyway.   We are planning
+some zlib-compression experiments in the near future to see how this affects
+things. Because different bits of the screen can be sent using different
+encodings, the server could, in theory, detect that one bit would be most
+efficiently sent as JPEG, while another would be better hextiled. </p>
+
+<p>The question is always how much work it's worth doing
+at the server to find this out.  To some degree you can control this
+already, because the viewers allow you to specify your preferred encoding.
+Under X, if your viewer and server are on the same machine the viewer will
+use the raw encoding by default, otherwise it will use hextile.  You
+may find that by selecting different encodings on the command line you
+get better performance. </p>
+
+<p>See also the suggestions above about using ssh, which also
+provides compression.</p></DD>
+
+<DT> <B>
+Have you thought about caching bits of the screen at the viewer end?</B></DT>
+
+<DD>Yes, that could also be good. You could have an off-screen
+cache in the viewer and the server could copy things from there to the
+screen.  Management of this would add a certain amount of complexity,
+though. </DD>
+
+<DD>Since there is already a CopyRect primitive in VNC,
+an alternative approach would be to copy updates from another part of the
+screen if they already exist there, rather than resending them. Again,
+to make the server find out efficiently when this is worth doing would
+be an interesting challenge, and volunteers for the project are welcome! </DD>
+
+<DT> <B>
+Can I use VNC over a modem without using TCP/IP?</B></DT>
+
+<DD>Not at present. VNC could run over other transports such as
+RS232, firewire, USB, modems, IrDA etc, in fact, anything which gives
+a reliable 2-way connection. At present we just use TCP/IP, because
+it's convenient, ubiquitous, and easy to route.  This means that you
+can use VNC over anything which supports TCP/IP, so using it over a
+modem is just the same as any other network, once you have Dial-Up
+Networking set up.  If you need to communicate directly between two
+machines without going via the internet/intranet, then set up a remote
+access server on one and dial in from the other.</DD>
+
+<DT> <B>
+Does VNC have any Y2K (Year 2000) bugs?</B></DT>
+
+<DD>The WinVNC server and Windows viewer have been tested
+on a PC with its date running through the 2000 boundary without any problems,
+so unless the underlying OS or BIOS has difficulties, VNC on a PC should
+be fine.  The VNC part of the X-based Unix VNC server only uses dates 
+when writing the log files; the logfile entries are timestamped with a
+two-digit year, but the format is easy to change if required and the entries
+are not intended to be machine-readable. The developers of  the XFree86
+server on which Xvnc is based state that there are no Y2K problems (see 
+http://www.xfree86.org/FAQ/). We therefore issue the standard disclaimer:
+we believe the VNC code, in its entirety, to be free from Year 2000 problems,
+subject to the other components of the systems on which it is running.</DD>
+
+<DT> <B>
+Any other tips?</B></DT>
+
+<DD>Several people have indicated that they have to use
+Windows occasionally but prefer to use Unix most of the time, and so want
+to access a PC under the desk from the Unix box. </DD>
+
+<DD>
+<p>Here's a suggestion: all other things being equal,
+I recommend using the Windows box to view the Unix machine rather than
+the other way around.  This is chiefly because Windows generally works
+better as a client than as a server, and also because PC graphics cards
+are often better than those in Unix workstations.  Remember, you can
+create a VNC session of any size and pixel depth you like.</p>
+
+<p>If you're very anti-Windows you can make your VNC desktop
+the same size as the local screen and set the taskbar to 'Auto hide' and just
+pretend you're on an X terminal, but pop up the Start menu when you have
+to use PowerPoint.... The Windows viewer also now has a proper
+'full-screen mode', so you don't even need to bother with auto-hide.
+</p></DD>
+
+<DT> <B>
+You misspelled 'organization' on the download page!</B></DT>
+
+<DD>No we didn't. We spell it like that in the UK. 
+Actually, we spell it both ways, but the 's' spelling is more common, despite
+what the OED says! Now, as for 'misspelt'...</DD>
+
+</DL><HR>
+<H2>Compiling the source</H2><DL>
+
+<DT> <B>
+I'm having trouble compiling VNC on my platform...</B></DT>
+
+<DD>Have you checked the <a href="http://www.uk.research.att.com/vnc/contribs.html">contribs</a>
+page?  Several people have provided hints on how to build VNC on other
+platforms.  If yours is not listed there, you might at least get some
+clues..</DD>
+</DL><HR>
+</DL>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Ruler here? -->
+
+<center>
+
+<p><i><font size=-1>For comments, feedback, etc, please see the '<a href="http://www.uk.research.att.com/vnc/intouch.html">Keeping
+
+in touch</a>' page</font>.</i>
+
+<br><i><font size=-1>Copyright 1999 - AT&amp;T Laboratories Cambridge
+
+</font></i></center>
+
+
+
+
+
+
+</body>
+
+</html>
+

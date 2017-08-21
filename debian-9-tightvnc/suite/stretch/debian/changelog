@@ -1,0 +1,903 @@
+tightvnc (1.3.10-0ubuntu3) xenial; urgency=medium
+
+  * debian/patches/more-arm64-fixes.patch: Add patch to complete arm64 port.
+    Patch merged from Debian.  Thanks to Riku Voipio <riku.voipio@linaro.org>.
+    LP: #1429198.
+
+ -- dann frazier <dannf@ubuntu.com>  Wed, 23 Mar 2016 15:45:53 -0600
+
+tightvnc (1.3.10-0ubuntu2) wily; urgency=medium
+
+  * debian/patches/0001-Clean-up-the-malloc-conflicts.patch: [PATCH 1/2]
+    Clean up the malloc conflicts.  Thanks to Lauri Kasanen
+    <cand@gmx.com>.
+  * debian/patches/0002-Add-ppc64el-support.patch: [PATCH 2/2] Add
+    ppc64el support.  Thanks to Lauri Kasanen <cand@gmx.com>.  Closes
+    LP: #1341829.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Tue, 30 Jun 2015 14:14:17 -0700
+
+tightvnc (1.3.10-0ubuntu1) utopic; urgency=medium
+
+  * New upstream version.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed, 30 Jul 2014 20:26:10 +0200
+
+tightvnc (1.3.9-6.4ubuntu1) trusty; urgency=medium
+
+  * Add arm64 support.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 18 Mar 2014 14:50:14 +0000
+
+tightvnc (1.3.9-6.4) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * debian/control: update Build-Depends:
+    - libjpeg62-dev -> libjpeg-dev transition (Closes: #644967)
+  * debian/rules:
+   - do not add useless config.sub/config.guess
+   - remove generated makefiles
+   - Fix FTBFS due to broken dpkg.  (Closes: #642768)
+   - remove useless patch debian-changes-1.3.9-6.2
+
+ -- Bill Allombert <ballombe@debian.org>  Thu, 07 Jun 2012 00:01:17 +0200
+
+tightvnc (1.3.9-6.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Add Makefile and Xvnc/Makefile to dh_clean parameters. (Closes: #663566)
+
+ -- Mònica Ramírez Arceda <monica@probeta.net>  Wed, 21 Mar 2012 10:55:32 +0100
+
+tightvnc (1.3.9-6.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Add support Renesas SH (Closes: #582340).
+
+ -- Nobuhiro Iwamatsu <iwamatsu@debian.org>  Fri, 11 Mar 2011 22:43:47 +0900
+
+tightvnc (1.3.9-6.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+    - Update to packaging format "3.0 (quilt)".
+  * debian/compat
+    - Update to 7.
+  * debian/control
+    - (Build-Depends): Update xutils to xutils-dev (important;
+      Closes: #575865). Update to debhelper 7.1. Remove obsolete x-dev.
+    - (Depends): Add ${misc:Depends}.
+    - (Homepage): New field.
+    - (Standards-Version): Update to 3.8.4.
+    - (tightvncserver::Depends): Replace obsolete xbase-clients with
+      x11-utils and xauth. The needed binaries xdpyinfo and xauth
+      are used in Perl program /usr/bin/tightvncserver.
+  * debian/copyright
+    - Point to GPL-2.
+  * debian/patches
+    - (10, 20): Add new patches.
+    - (30): Convert original MIPS patch to apply to current sources.
+    - (tightvnc-ftbfs-mips.patch): Removed. See 30.
+   * debian/*.{postrm,prerm}
+    - Add "set -e".
+    - Fix Lintian maintainer-script-without-set-e.
+  * debian/rules
+    - (CC): Add. Export variable for xmkmf(1).
+    - (DH_COMPAT): Delete; use debian/compat.
+    - (install): Correct tightvncpasswd.1x to tightvncpasswd.1.
+    - (binary-arch): Remove empty directories.
+  * debian/source/format
+    - New file.
+  * debian/watch
+    - New file.
+  * debian/tightvncserver.doc-base
+    - New file.
+  * debian/xtightvncviewer.menu
+    - (section): Update obsolete Apps/Net to
+      Applications/Network/Communication.
+
+ -- Jari Aalto <jari.aalto@cante.net>  Thu, 13 May 2010 11:02:08 +0300
+
+tightvnc (1.3.9-6) unstable; urgency=low
+
+  * Applied patch for sparc that solves the problem that everything is
+    mirrored on sparc. Thanks to Raúl Porcel <armin76@gentoo.org> for
+    pointing out that this patch needs to be re-added.
+  * Applied patch for GNU/kFreeBSD to fix socket handling problem.
+    Closes: #500414. Thanks to "Diego Ongaro" <ongardie@gmail.com> for the
+    patch.
+  * Updated to use x11proto-dev instead of x-dev as build dependency.
+    Closes: #515397.
+  * Changed log directory from /usr/adm to /var/log. Closes: #500877.
+
+ -- Ola Lundqvist <opal@debian.org>  Thu, 19 Nov 2009 21:46:00 +0100
+
+tightvnc (1.3.9-5) unstable; urgency=low
+
+  * Fix for the default xstartup to make gnome work. Closes: #476727.
+
+ -- Ola Lundqvist <opal@debian.org>  Wed, 07 Oct 2009 18:39:34 +0200
+
+tightvnc (1.3.9-4) unstable; urgency=low
+
+  * Updated man path in build system.
+    Xvnc/config/cf/svr3.cf
+    Xvnc/config/cf/Imake.tmpl
+  * Merged some code from 1.2.9 version in order to build properly on IA64.
+    Closes: #483094. This changes some other minors things and also help build
+    on Mipsel and hppa architecture.
+
+ -- Ola Lundqvist <opal@debian.org>  Wed,  4 Jun 2008 08:17:28 +0200
+
+tightvnc (1.3.9-3) unstable; urgency=low
+
+  * Applied patch from Thiemo Seufer <ths@networkno.de> to make it build
+    fine on mips and mipsel architecture, closes: #481444.
+
+ -- Ola Lundqvist <opal@debian.org>  Sat, 17 May 2008 17:36:05 +0200
+
+tightvnc (1.3.9-2) unstable; urgency=low
+
+  * Now ships Vncviewer resources file, closes: #481274. Thanks to Ian
+    Wienand <ianw@ieee.org> for the patch.
+
+ -- Ola Lundqvist <opal@debian.org>  Thu, 15 May 2008 20:55:20 +0200
+
+tightvnc (1.3.9-1) unstable; urgency=low
+
+  * New upstream release.
+    Closes: #424077, #434240.
+    This new release corrects a number of known problems:
+     - tightvncconnect no longer make Xtightvnc crash (closes: #422361)
+     - Control|Shift + Click is now sent properly (closes: #173701)
+     - No input starvation (closes: #218401)
+     - No errors when connecting from WinXP (closes: #281702)
+     - Default path correction (closes: #365593)
+     - The problematic DEBUG statement no longer exists (closes: #374273)
+     - No longer use raw encoding for ssh tunnels (closes: #423091)
+  * Updated vncserver script to allow .vnc directory as symlink.
+    Closes: #411187.
+  * Corrected link to broken homepage, closes: #345368.
+  * Now uses /etc/X11/Xsession as default x init script, closes: #378573.
+  * Applied patch from Paul Brook <paul@nowt.org> to make it build on
+    arm architecture, closes: #464797.
+  * Applied patch from Cyril Brulebois <cyril.brulebois@enst-bretagne.fr> to
+    make it build on GNU/kFreeBSD, closes: #415611.
+  * Dropped pre-depends on dpkg.
+
+ -- Ola Lundqvist <opal@debian.org>  Sun, 23 Mar 2008 00:36:15 +0100
+
+tightvnc (1.2.9-22) unstable; urgency=low
+
+  * Removed dependency on vnc-common. Vncpasswd is now part of the
+    tightvncserver package. This means that there are no dependency on other
+    vnc packages anymore.
+
+ -- Ola Lundqvist <opal@debian.org>  Tue,  4 Mar 2008 08:21:14 +0100
+
+tightvnc (1.2.9-21) unstable; urgency=low
+
+  * Applied patch from Jari Aalto <jari.aalto@cante.net> to make options
+    be displayed in correct order in manpage, closes: #394833.
+
+ -- Ola Lundqvist <opal@debian.org>  Sun, 19 Nov 2006 10:02:20 +0100
+
+tightvnc (1.2.9-20) unstable; urgency=low
+
+  * Removed patch to be able to set maxclients to 1000 instead of
+    default 256. This means that #300858 need to be reopened.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon,  2 Oct 2006 21:40:25 +0200
+
+tightvnc (1.2.9-19) unstable; urgency=low
+
+  * Applied a possible correction for FTBFS for ia64 arch, closes:
+    #381317.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon, 14 Aug 2006 21:47:55 +0200
+
+tightvnc (1.2.9-18) unstable; urgency=low
+
+  * Applied patch from LaMont Jones <lamont@debian.org> to support hppa
+    arch building, closes: #382386.
+
+ -- Ola Lundqvist <opal@debian.org>  Fri, 11 Aug 2006 17:25:35 +0200
+
+tightvnc (1.2.9-17) unstable; urgency=low
+
+  * Reverted back to old build method and changed config files instead.
+
+ -- Ola Lundqvist <opal@debian.org>  Wed,  9 Aug 2006 22:29:34 +0200
+
+tightvnc (1.2.9-16) unstable; urgency=low
+
+  * Incorporated new build way from ubuntu, with modifications to suite
+    Debian. This mean that it will adapt to how X behaves.
+    Fix up DefaultFontPath (closes: #335849, #366881).
+  * Removed debian/tightvncserver.wrapper as it is not used.
+  * Updated to standards version 3.7.2.
+
+ -- Ola Lundqvist <opal@debian.org>  Wed,  9 Aug 2006 07:17:28 +0200
+
+tightvnc (1.2.9-15) unstable; urgency=low
+
+  * Added missing documentation, closes: #366917.
+  * Corrected documentation problem in README.inetd, closes: #319097.
+
+ -- Ola Lundqvist <opal@debian.org>  Sun,  4 Jun 2006 22:56:54 +0200
+
+tightvnc (1.2.9-14) unstable; urgency=low
+
+  * Applied patch to make xtightvncserver compile and work on amd64.
+    http://bugs.gentoo.org/attachment.cgi?id=78616. Closes: #281767.
+    Thanks to Hugo Mills <hugo@carfax.org.uk> for pointing me to the
+    fix.
+
+ -- Ola Lundqvist <opal@debian.org>  Sun, 21 May 2006 21:39:31 +0200
+
+tightvnc (1.2.9-13) unstable; urgency=low
+
+  * Correction for rgb path and font paths.
+
+ -- Ola Lundqvist <opal@debian.org>  Thu, 27 Apr 2006 07:06:59 +0200
+
+tightvnc (1.2.9-12) unstable; urgency=low
+
+  * RGB path correction.
+  * Run Xtightvnc instead of Xvnc.
+
+ -- Ola Lundqvist <opal@debian.org>  Fri, 21 Apr 2006 21:10:44 +0200
+
+tightvnc (1.2.9-11) unstable; urgency=low
+
+  * Applied patch from Peter Cordes <peter@cordes.ca> that make it
+    possible to use with xorg version 7.0, closes: #363448.
+
+ -- Ola Lundqvist <opal@debian.org>  Wed, 19 Apr 2006 21:40:57 +0200
+
+tightvnc (1.2.9-10) unstable; urgency=low
+
+  * Changed dependency from xserver-common to x11-common,
+    closes: #362516.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon, 17 Apr 2006 15:09:11 +0200
+
+tightvnc (1.2.9-9) unstable; urgency=low
+
+  * Applied patch from Markus Gutschke
+    <markus+debian@debian.gutschke.com> to fix a crash problem with -
+    listen option in xvncviewer, closes: #337693.
+  * Incorporated the NMU fixes, closes: #349107.
+  * Applied patch from Thiemo Seufer <ths@networkno.de> for support
+    of mips/mipsel to tightvnc, closes: #340336.
+  * Updated standards version from 3.6.1 to 3.6.2.
+  * Updated to debhelper 4 compatibility.
+  * Updated FSF address in debian/copyright file.
+
+ -- Ola Lundqvist <opal@debian.org>  Sat, 11 Mar 2006 17:11:45 +0100
+
+tightvnc (1.2.9-8.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Replace build-dependency on xlibs-dev with an explicit build-dependency
+    on each required package. (Closes: #346923)
+
+ -- Steinar H. Gunderson <sesse@debian.org>  Sat, 21 Jan 2006 02:15:13 +0100
+
+tightvnc (1.2.9-8) unstable; urgency=low
+
+  * Applied a simple patch to avoid crash in xtightvncviewer when
+    switching local desktops, closes: #260439, #299221.
+  * Applied a nice patch from Truxton Fulton <trux@truxton.com> to allow
+    1024 X clients, instead of just 128 that is the default, closes:
+    #300858.
+  * Fixed typo in manpage, closes: #327157.
+
+ -- Ola Lundqvist <opal@debian.org>  Sun,  9 Oct 2005 21:31:44 +0200
+
+tightvnc (1.2.9-7) unstable; urgency=low
+
+  * Fixed typo in manpage for tightvncserver, closes: #327157.
+
+ -- Ola Lundqvist <opal@debian.org>  Sun,  9 Oct 2005 21:24:52 +0200
+
+tightvnc (1.2.9-6) unstable; urgency=low
+
+  * Applying patch from Ian Wienand <ianw@gelato.unsw.edu.au> to make
+    sure tightvnc build on IA64, closes: #185073.
+  * Make sure that XF86Config-4 is the default instead of XF86Config if
+    it exist, closes: #275135.
+
+ -- Ola Lundqvist <opal@debian.org>  Sat,  5 Mar 2005 21:47:48 +0100
+
+tightvnc (1.2.9-5) unstable; urgency=medium
+
+  * Applied patch from Andreas Jochens <aj@andaco.de> so that it can
+    compile with gcc 3.4, closes: #274045.
+
+ -- Ola Lundqvist <opal@debian.org>  Sat,  2 Oct 2004 20:03:44 +0200
+
+tightvnc (1.2.9-4) unstable; urgency=high
+
+  * Debianized xstartup so it use x-window-manager and x-terminal-
+    emulator instead of xterm and twm directly, closes: #272537.
+  * Made vncserver honor $vncStartup, closes: #269049.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon, 20 Sep 2004 21:43:41 +0200
+
+tightvnc (1.2.9-3) unstable; urgency=high
+
+  * Ported options from old debian tightvnc-wrapper.
+  * Made sure that it honor /etc/vnc.conf config file, closes: #267519.
+    This is the cause of the severity.
+  * Updated usage description.
+  * Updated manual page to document the -query option, closes: #231445.
+  * Updated manual page so it says tightvnc where it should do.
+  * Updated standards version to 3.6.1.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon, 23 Aug 2004 09:18:35 +0200
+
+tightvnc (1.2.9-2) unstable; urgency=low
+
+  * Applied patch for amd64 support, closes: #254861. Thanks to Andreas
+    Jochens <aj@andaco.de> for the patch.
+  * Now use upstream vncwrapper instead of realvnc one, closes: #201176.
+    Patched to to have good support for tightvnc-java.
+
+ -- Ola Lundqvist <opal@debian.org>  Fri, 13 Aug 2004 10:24:32 +0200
+
+tightvnc (1.2.9-1) unstable; urgency=low
+
+  * New upstream version, closes: #207914, #180607.
+  * Changed vncserver wrapper so that vncStartup honor ~/.vnc/xstartup.
+    Thanks to Jan Xu <janix2000@yahoo.co.uk>, closes: #219354.
+
+ -- Ola Lundqvist <opal@debian.org>  Fri,  9 Jul 2004 15:35:15 +0200
+
+tightvnc (1.2.7-3) unstable; urgency=low
+
+  * Fixed description so it is not so confusing.
+
+ -- Ola Lundqvist <opal@debian.org>  Fri, 18 Jul 2003 16:31:26 +0200
+
+tightvnc (1.2.7-2) unstable; urgency=low
+
+  * Important security update regarding X cookies.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon, 27 Jan 2003 10:29:45 +0100
+
+tightvnc (1.2.7-1) unstable; urgency=low
+
+  * Calls correct program, closes: #174954.
+  * New upstream version.
+  * Corrected menu path, closes: #174429, #176072.
+  * Fixed 100% cpu problem if font server restarted, closes: #176414.
+  * Updated the description so people can tell why to use tightvnc
+    instead of vnc, closes: #173194.
+  * Added build dependency on imake, closes: #173087.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon, 13 Jan 2003 19:45:36 +0100
+
+tightvnc (1.2.6-4) unstable; urgency=low
+
+  * Added patch that fixed xvncviewer bug 14556 (same in tightvnc).
+  * Added patch from Martin Koegler <e9925248@stud4.tuwien.ac.at> that
+    fixes font path issues, closes: #173451.
+
+ -- Ola Lundqvist <opal@debian.org>  Thu, 19 Dec 2002 08:48:54 +0100
+
+tightvnc (1.2.6-3) unstable; urgency=low
+
+  * Fix to make sure that the right server is started with vncserver is
+    used as the alternative, closes: #172627. Thanks to Rob Andrews
+    <rob@impure.org.uk> for the little fix.
+  * Now uses a separate alternative for Xvnc.
+  * Added Xvnc manpage.
+
+ -- Ola Lundqvist <opal@debian.org>  Wed, 11 Dec 2002 15:19:36 +0100
+
+tightvnc (1.2.6-2) unstable; urgency=low
+
+  * Uses vnc.conf from vnc-common instead of tightvnc.conf.
+  * Started to use alternatives.
+  * Removed unnecessary dir in xtightvncviewer.
+  * Now provides vnc-server and vnc-viewer just as vnc package does.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon,  9 Dec 2002 15:22:15 +0100
+
+tightvnc (1.2.6-1) unstable; urgency=low
+
+  * Created the tightvnc packages using the vnc package as a base.
+    Closes: #143861, #164067, #168563.
+  * Manpages from upstream.
+  * Updated to latest standards version, 3.5.8 (no changes).
+  * Moved from /usr/X11R6/ to /usr/
+  * Applied a subset of the patches that the debian package vnc has
+    applied.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon, 09 Dec 2002 11:09:43 +0100
+
+vnc (3.3.5-2) unstable; urgency=low
+
+  * Patched vnc to make the vncauth library. It just had moved to some
+    other place, closes: #168362.
+  * Removed build dependency on xlib6g-dev, closes: #170163.
+  * Fixed lintian error about shlibs information not generated correctly.
+
+ -- Ola Lundqvist <opal@debian.org>  Fri, 22 Nov 2002 07:54:11 +0100
+
+vnc (3.3.5-1) unstable; urgency=low
+
+  * New upstream version, bugfix release.
+    Fix for "can no longer login problem",
+    closes: #167935, #168096, #168119.
+  * 256 color display problem fixed upstream as mentioned in #168063.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon, 11 Nov 2002 12:15:35 +0100
+
+vnc (3.3.4-1) unstable; urgency=low
+
+  * New upstream version. This is major build changes. It does for example
+    use automake/autoconf which hopefully will make some big changes to
+    the buildability. The big change to this version is that the tightvnc
+    patches is no longer used. The -via and -tunnel option is kept though.
+  * Major patch-splitting/merging work have been done and is available
+    in the debian/patches directory. All old patches (that have not been
+    fixed upstream) is kept, and sent to upstream. So even if this is a major
+    change (tightvnc->vnc) nobody should notice anything (I hope).
+  * Added some build dependencies that Kirk Madsen <madsenk@ieee.org> noticed.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon, 28 Oct 2002 08:57:57 +0100
+
+vnc (3.3.3r2-21) unstable; urgency=low
+
+  * Applied sh build patch, closes: #157385.
+    Thanks a lot to ISHIKAWA Mutsumi <ishikawa@linux.or.jp> for
+    providing the patch.
+  * Fix DoS problem in http server, closes: #143857.
+    Thanks to Tim Waugh <twaugh@redhat.com> for sending this patch to
+    the vnc mailinglist.
+  * Fixed allocation bug, closes: #152733.
+    Thanks to Herbert Thielen <HThielen@lucent.com> for the patch.
+  * Fixed minor warning bug, closes: #153012.
+    Thanks to Herbert Thielen <HThielen@lucent.com> for the patch.
+  * Call of rand instead of srand in vncserver wrapper, closes: #153877.
+    Thanks to Matthew Astley <mca-debbts@grantadesign.com> for the info.
+  * Fix passwd.real problem, closes: #152732.
+    Thanks to Herbert Thielen <HThielen@lucent.com> for the patch.
+
+ -- Ola Lundqvist <opal@debian.org>  Fri, 11 Oct 2002 07:29:34 +0200
+
+vnc (3.3.3r2-20) unstable; urgency=high
+
+  * Fixed s390 signed char problem, closes: #143425.
+  * Fixes copyright file.
+
+ -- Ola Lundqvist <opal@debian.org>  Thu, 18 Apr 2002 19:05:28 +0200
+
+vnc (3.3.3r2-19) unstable; urgency=low
+
+  * Fixed spelling issue, closes: #133371.
+  * Added README.inetd, written by John Lines <john@paladin.demon.co.uk>,
+    closes: #139164.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon,  8 Apr 2002 20:58:52 +0200
+
+vnc (3.3.3r2-18) unstable; urgency=low
+
+  * Fixing wrapper problems, closes: #127043, #134554.
+
+ -- Ola Lundqvist <opal@debian.org>  Sun,  7 Apr 2002 21:14:33 +0200
+
+vnc (3.3.3r2-17) unstable; urgency=low
+
+  * MU upload with the patch (last changelogentry) added, and with
+    some more fixes from Jones to make it work fine, closes: #114343.
+  * Now removes /etc/alternatives/xvncviewer if it exists
+    and is a dangling symlink, closes: #127043.
+  * Added a patch manually from Chris Tillman <tillman@azstarnet.com>,
+    had to fix it some because of the other patches, closes: #126974.
+  * Added a security patch from Oryn <oryn@fsck.tv>, closes: #128096.
+  * Fixed the xvncviewer man page, vncconnect is already in vncserver,
+    closes: #128569.
+  * Fixed vncconnect manpage, closes: #127555.
+  * Updated TODO.
+  * Added next tightvnc patch, no patch needed for java source because
+    nothing have changed there. This is just minor bug fixes,
+    closes: #126394.
+
+ -- Ola Lundqvist <opal@debian.org>  Wed, 16 Jan 2002 14:03:43 +0100
+
+vnc (3.3.3r2-16.1) unstable; urgency=low
+
+  * NMU
+  * Update Imake.cf, linux.cf, and makedepends (getline conflicted.)
+    Closes: #114343
+
+ -- LaMont Jones <lamont@debian.org>  Tue, 15 Jan 2002 22:57:20 -0700
+
+vnc (3.3.3r2-16) unstable; urgency=low
+
+  * More s390 fixes from Gerhard Tonn <GerhardTonn@swol.de>.
+  * Now includes vncconnect, closes: #115157.
+  * Now does not use wrapper for xvncviewer, closes: #125800.
+  * Fixed spelling error in libvncauth-dev, closes: #125067.
+
+ -- Ola Lundqvist <opal@debian.org>  Thu, 20 Dec 2001 15:51:37 +0100
+
+vnc (3.3.3r2-15) unstable; urgency=low
+
+  * Fixed build-dep problem, closes: #114343.
+  * No more use of installxaw, closes: #120229.
+  * Fixed author section of the manpage, closes: #122551.
+  * Added patch for s390 from Gerhard Tonn <GerhardTonn@swol.de>,
+    closes: #123806.
+  * Applied patch to work under gdm from Nick Phillips <nwp@lemon-
+    computing.com>, closes: #122561.
+  * Updated description to include note about TightVNC, closes: #114275.
+  * Really old bugs. No further reports. Probably fixed by now.
+    closes: #75599, #67409, #57325.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon, 17 Dec 2001 19:21:48 +0100
+
+vnc (3.3.3r2-14) unstable; urgency=low
+
+  * Fixed build problem, closes: #108419.
+  * Fixed another build problem, closes: #112953.
+  * Fixed path problem, thanks ijones@cis.ohio-state.edu for the patch
+    closes: #108333.
+  * Fixed passwd creation problem, thanks to
+    Isaac Jones <ijones@cis.ohio-state.edu> and Ohio State Opensource Club,
+    closes: #110460.
+  * Documented the tightvnc options, closes: #105506.
+  * Fixed typo in description, closes: #109372.
+  * Applied the latest tightvnc patch, closes: #111886.
+
+ -- Ola Lundqvist <opal@debian.org>  Mon, 01 Oct 2001 10:47:24 +0200
+
+vnc (3.3.3r2-13) unstable; urgency=low
+
+  * Added build dependency on libjpeg62-dev, closes: #104300.
+
+ -- Ola Lundqvist <opal@debian.org>  Fri, 13 Jul 2001 23:05:12 +0200
+
+vnc (3.3.3r2-12) unstable; urgency=low
+
+  * Fixed the manpage for xvncviewer with a updated one from
+    Terran Melconian <terran@consistent.org>, closes: #89469.
+  * Fixed dependency, closes: #96552.
+  * Applied a small patch from Isaac Jones
+    <ijones@syntax.cis.ohio-state.edu> that fixes error in the vncpasswd
+    wrapper so that the config files are actually used, closes: #99911.
+  * This should fix this woody bug too, closes: #100334.
+  * Added tight encoding, from http://www.ce.cctpu.edu.ru/vnc/download.html,
+    closes: #100172.
+
+ -- Ola Lundqvist <opal@debian.org>  Fri, 2 Feb 2001 13:18:23 +0100
+
+vnc (3.3.3r2-11) unstable; urgency=low
+
+  * Added some more features to the server wrapper
+    (thanks to Jorge L. deLyra), closes: Bug#81670.
+
+ -- Ola Lundqvist <opal@debian.org>  Fri, 2 Feb 2001 13:18:23 +0100
+
+vnc (3.3.3r2-10) unstable; urgency=low
+
+  * Fixing typo in build dependency, closes: Bug#81297.
+  * Fix deferupdate problem (fix by John, jodaman@cegt201.bradley.edu),
+    closes: Bug#79792.
+
+ -- Ola Lundqvist <opal@debian.org>  Fri, 5 Jan 2001 12:06:15 +0100
+
+vnc (3.3.3r2-9) unstable; urgency=low
+
+  * Fixing yet another build dependency, closes: Bug#80185.
+
+ -- Ola Lundqvist <opal@debian.org>  Wed, 21 Dec 2000 11:08:21 +0100
+
+vnc (3.3.3r2-8) unstable; urgency=low
+
+  * Removed the java code from vncserver. It is not in a separate package
+    and are compiled separatly. A step in the right direction to handle 79759.
+
+ -- Ola Lundqvist <opal@debian.org>  Wed, 19 Dec 2000 21:15:48 +0100
+
+vnc (3.3.3r2-7) unstable; urgency=low
+
+  * Fixed so that the http port can be specified and added that to the
+    documentation, closes: Bug#58350.
+
+ -- Ola Lundqvist <opal@debian.org>  Wed, 13 Dec 2000 13:25:26 +0100
+
+vnc (3.3.3r2-6) unstable; urgency=low
+
+  * Applied patch from Rich Sahlender <rsahlen@debian.org>
+   and fixed it so that it applied cleanly, closes: Bug#74369.
+
+ -- Ola Lundqvist <opal@debian.org>  Wed, 13 Dec 2000 13:25:26 +0100
+
+vnc (3.3.3r2-5) unstable; urgency=low
+
+  * Recompiled to get rid of xpm4.7 dependency, closes: Bug#78794.
+
+ -- Ola Lundqvist <opal@debian.org>  Tue, 5 Dec 2000 09:14:11 +0100
+
+vnc (3.3.3r2-4) unstable; urgency=low
+
+  * Corrected some installissues in the new vnc-common packages.
+    - Added replaces, closes: Bug#77745, Bug#77811.
+    - Fixed .dhelp problem, problem with doc-base file,
+      closes: Bug#77759, Bug#77754.
+  * Fixed commented reference to Xsession in config, closes: Bug#77721.
+  * Misspelled changelog should be, closes: Bug#65700.
+
+ -- Ola Lundqvist <opal@debian.org>  Thu, 23 Nov 2000 13:02:23 +0100
+
+vnc (3.3.3r2-3) unstable; urgency=low
+
+  * Recompiled without xlib6, closes: Bug#77501.
+    Thank you for the information about libc5.
+  * Fixed a man typo error in vncserver, closes: Bug#67920.
+  * Fixed garbled display on PowerPC,
+    thank you Kevin Puetz <puetzk@iastate.edu> for the patch,
+    closes: Bug#73022.
+  * Probably fixed in later version, closes: Bug#57706.
+
+ -- Ola Lundqvist <opal@debian.org>  Sun, 19 Nov 2000 17:36:37 +0100
+
+vnc (3.3.3r2-2) unstable; urgency=low
+
+  * Fixed typo error in vnc.conf, closes: Bug#63557.
+  * Created a vnc-common package, closes: Bug#65700.
+
+ -- Ola Lundqvist <opal@debian.org>  Sun, 19 Nov 2000 17:36:37 +0100
+
+vnc (3.3.3r2-1) unstable; urgency=low
+
+  * Fixed so that it honors XAUTHORITY env variable, thanx to  Wolfram Gloger
+    <Wolfram.Gloger@dent.med.uni-muenchen.de> for the patch, closes: Bug#71440
+  * support XDM-AUTHORIZATION-1, thanx to Richard Kettlewell
+    <rjk@greenend.org.uk> for the patch, closes: Bug#69822
+  * Fixed the wrapper issue, closes: Bug#61074
+  * Fixed link in faq to point to the right place, closes: Bug#61224
+  * Fixed pre-depends problem, closes: Bug#63066, Bug#63080
+  * Changed to a new upstream version, that fixes some issues.
+  * Applied patch from Ian Jackson <iwj@ncipher.com> to cope
+    with 24bpp X servers, closes: Bug#76564
+  * App defaults moved to /etc/X11/app-defaults, closes: Bug#76699
+
+ -- Ola Lundqvist <opal@debian.org>  Sat, 18 Nov 2000 20:40:48 +0100
+
+vnc (3.3.3-10) frozen unstable; urgency=low
+
+  * Thanks to Ben Collins for the NMU.
+  * Can now build on m68k thanks to a patch by Roman Hodek
+    <Roman.Hodek@informatik.uni-erlangen.de> Closes: Bug#61168 (important).
+
+ -- Edward Betts <edward@debian.org>  Sun, 19 Mar 2000 13:23:52 +0000
+
+vnc (3.3.3-9.1) frozen unstable; urgency=low
+
+  * NMU
+  * Applied patch to imake config files, allows building on sparc, arm,
+    and probably fixes powerpc too, closes: #60529, #60532
+
+ -- Ben Collins <bcollins@debian.org>  Sat, 18 Mar 2000 08:14:28 -0700
+
+vnc (3.3.3-9) frozen unstable; urgency=low
+
+  * applied patch supplied by Jim Studt <jim@federated.com> to allow building
+    on ARM, closes: Bug#57838
+  * applied patch supplied by Bill Blunn <bill@tao-group.com> to support the
+    pixelformat option in the config file, closes: Bug#58338
+
+ -- Edward Betts <edward@debian.org>  Thu, 24 Feb 2000 02:24:36 +0000
+
+vnc (3.3.3-8) frozen unstable; urgency=low
+
+  * debian/control: Build-Depends: s/zlib1g-dev/zlibg1-dev/ closes: Bug#56174
+  * debian/xvncviewer.xaw: added /usr/X11R6/lib/Xaw95 closes: Bug#55199
+
+ -- Edward Betts <edward@debian.org>  Fri, 28 Jan 2000 17:42:41 +0000
+
+vnc (3.3.3-7) unstable; urgency=low
+
+  * Xvnc/config/cf/vnclibs.def: single line changed to fix important bug:
+    #55277, filed by John Goerzen, `vnc: can't build from source'.
+  * debian/rules: added -Nlibvncauth-dev to dh_installchangelogs fixes
+    usr/share/doc/libvncauth0 -> usr/share/doc/libvncauth-dev symlink.
+
+ -- Edward Betts <edward@debian.org>  Sun, 16 Jan 2000 09:23:39 +0000
+
+vnc (3.3.3-6) unstable; urgency=low
+
+  * debian/libvncauth-dev.links: changed /usr/share/doc/libvncauth-dev to a
+        link to /usr/share/doc/libvncauth0
+  * debian/control: moved libvncauth0 from section x11 to libs and
+        libvncauth-dev from x11 to devel
+  * debian/control: updateded Standards-Version to 3.1.1
+  * debian/control: added Build-Depends.
+  * Xvnc/config/cf/vnc: modified so that Xvnc links with libvncauth.
+
+ -- Edward Betts <edward@debian.org>  Sun,  9 Jan 2000 07:58:23 +0000
+
+vnc (3.3.3-5) unstable; urgency=low
+
+  * Split svncviewer into seperate source package; both packages now have
+        pristine source.
+  * To handle source split, libvncauth is compiled as a shared library.
+  * debian/TODO: wrote a long Todo list and removed items as they were
+        completed, still some stuff left to do.
+  * debian/*.debian: renamed to debian/*.wrapper, make things a bit clearer.
+  * debian/*.dirs: removed the doc dirs, dh_installdocs creates them.
+  * debian/control: remove svncviewer.
+  * debian/control: add libvncauth0 and libvncauth-dev.
+  * debian/copyright: mention that I now maintain the package.
+  * debian/copyright: change ORL to AT&T.
+  * debian/doc-base: added, for faq.html and start.html
+  * debian/docs: add start.html and start.txt
+  * debian/rules: simplifed build targets into one target.
+  * debian/rules: dh_compress + dh_link handle man pages instead of gzip + ln.
+  * debian/rules: install xvncviewer resources file.
+  * debian/rules: modifed find command to not erase Xvnc/Makefile on clean.
+  * debian/rules: remove the Xvnc/exports directory, and erase Xvnc/xmakefile,
+        Xvnc/config/cf/host.def and Xvnc/config/imake/Makefile.proto on clean.
+  * debian/rules: create faq.txt and start.txt from faq.html and start.html in
+        the build target.
+  * debian/vnc.conf: changed location of java classes.
+  * debian/vncserver.wrapper: changed location of java classes. Fixes: #53506.
+  * debian/vncviewer: example script to run xvncviewer or svncviewer based on
+        $DISPLAY. If this is to go into /usr/bin it needs to have a man page
+        and to be created in the postinst of xvncviewer and svncviewer.
+        Fixes: #36594.
+  * debian/xvncviewer.README.Debian: removed, because it was unneeded.
+  * debian/xvncviewer.menu: added menu item for xvncviewer. Fixes: #52921.
+  * libvncauth/Imakefile: extensive modification to build shared library.
+  * vncpasswd/Imakefile: modified to build against libvncauth shared library.
+  * vncviewer/Imakefile: modified to build against libvncauth shared library.
+
+ -- Edward Betts <edward@debian.org>  Tue, 28 Dec 1999 10:30:08 +0000
+
+vnc (3.3.3-4) unstable; urgency=low
+
+  * debian/xvncviewer.xaw: make xvncviewer use xaw-wrappers, fixes bug #50354.
+  * debian/control: vncserver needs the colour table file from xserver-common
+    so depend on xserver-common, thanks go to Jim Studt <jim@federated.com>
+    for spotting this one, fixes bug #33911 and half of bug #33910.
+  * debian/vncserver.debian: modification as suggested by previous
+    maintainer in bug #33910, fixes the other half of #33910.
+  * debian/vncserver.debian: added support for Xsession which is not
+    executable, thanks to journey@jps.net for spotting this one and the
+    implementation, fixes bug #51497.
+  * debian/rules & debian/vncserver.dirs: moved stuff out of /usr/X11R6/lib/ to
+    fix bug #33440, thanks go to Bernd Eckenfels <ecki@lina.inka.de> for
+    spotting this one.
+
+    vncpasswd.real -> /usr/X11R6/bin/ (vncpasswd modified, and man link added)
+    *.{class,jar}  -> /usr/share/vncserver (does anybody use these?)
+
+ -- Edward Betts <edward@debian.org>  Sun,  5 Dec 1999 17:18:06 +0000
+
+vvnc (3.3.3-3) unstable; urgency=low
+
+  * debian/rules: changed to debhelper
+  * FHS.
+  * Changed GPL location in copyright files
+  * Include source, as previous upload was accidently made without a diff
+  * There is no 3.3.3-2 because I messed up.
+
+ -- Edward Betts <edward@debian.org>  Sat,  6 Nov 1999 01:27:42 +0000
+
+vnc (3.3.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * New maintainer.
+
+ -- Edward Betts <edward@debian.org>  Sat, 30 Oct 1999 19:57:42 +0100
+
+vnc (3.3.2r2-4) frozen unstable; urgency=low
+
+  * debian/vncserver.debian: Do not remove too many font pathes, that means,
+    check for :unscaled and font server.
+  * debian/control: Depend on xbase-clients, not xbase. closes: #33028, #32821.
+    The latter is an important bug and holding up the release of slink.
+  * debian/copyright.vnc: Update addresse of web page.
+
+ -- Marcus Brinkmann <brinkmd@debian.org>  Sun,  7 Feb 1999 23:35:19 +0100
+
+vnc (3.3.2r2-3) frozen unstable; urgency=low
+
+  * Bugfixes only. The memory leak (see below) make it worth to include it
+    in frozen.
+  * control (vncserver): Added dependency on xbase because xauth is used in
+    vncserver script (David Karlin) and fixed a small typo (lintian).
+  * Xvnc/programs/Xserver/hw/vnc/rfbserver.c: Fixed memory leak (#27624).
+  * Xvnc/config/cf/Imake.cf: Added Arm, Sparc, PowerPC architecture.
+    Xvnc/config/cf/linux.cf: Likewise.
+    (Tor Slettnes <tor@slett.net>, #29831 for Alpha and
+     Christian Meder <meder@isr.uni-stuttgart.de>, #30407 for Sparc,
+     Daniel Jacobowitz <drow@them.org>, #29833).
+  * Xvnc/programs/Xserver/cfb/stipsprc32.s: Additional Sparc changes (see above).
+    Xvnc/programs/Xserver/cfb/stipsparc.s: Likewise.
+  * debian/vncserver.debian: Remove invalid font pathes.
+    (Bruce A. Mah <bmah@CA.Sandia.GOV>, #21635)
+  * debian/vncserver.debian: Add '--help' and '-h' as alias for '-help'. (#26872)
+
+ -- Marcus Brinkmann <brinkmd@debian.org>  Sun, 27 Dec 1998 05:16:11 +0100
+
+vnc (3.3.2r2-2) unstable; urgency=low
+
+  * svncviewer.postinst: Changed suid-register 4775 to 4755. Fixes: #27228.
+
+ -- Marcus Brinkmann <brinkmd@debian.org>  Tue, 29 Sep 1998 22:13:12 +0200
+
+vnc (3.3.2r2-1) unstable; urgency=low
+
+  * New upstream release. Fixes: #26673.
+  * Fixed vncserver script one more time. Fixes: #25471, #26080, #26836.
+  * Added '-clean' option to vncserver and vncserver(1x)
+    (by Dirk Eddelbuettel). Fixes: #26871.
+  * Added Replaces: and Conflicts: vnc-doc to vncserver and xvnviewer.
+    Reason: vnc-doc is obsolete and should be removed from Debian (already
+    reported as a bug against ftp.debian.org). The documentation is out of
+    date and new documentation is included in the packages themselve.
+
+ -- Marcus Brinkmann <brinkmd@debian.org>  Thu, 24 Sep 1998 04:32:49 +0200
+
+vnc (3.3.2-1) unstable; urgency=low
+
+  * New upstream version, based on X11R6.3 source code:
+    + Now native support for gzip'd fonts.
+    + Fixed Keyboard handling (hopefully).
+  * Added (slightly modified) FAQ from the web site.
+
+ -- Marcus Brinkmann <brinkmd@debian.org>  Fri, 12 Jun 1998 22:54:15 +0200
+
+vnc (3.3.1-5) frozen unstable; urgency=low
+
+  * Now the cool configuration files will actually be parsed. Sorry for
+    this. Fixes: #21062.
+
+ -- Marcus Brinkmann <Marcus.Brinkmann@ruhr-uni-bochum.de>  Mon, 13 Apr 1998 19:51:18 +0200
+
+vnc (3.3.1-4) frozen unstable; urgency=low
+
+  * This should be in frozen. It fixes many bugs and violations of policy.
+    Indeed it is the first usable release of vnc.
+  * Added patch by Mark Spencer <markster@marko.net> to
+    support gzip'd fonts. xfs cludge no longer necessary.
+  * Removed rpath-link from upstream config file.
+  * Changed vncserver to parse config files in /etc/vnc.conf and ~/.vncrc.
+  * Changed vncpasswd to parse config files and get the default passwd file
+    location from there. Also made it verbose if file could not be written.
+  * Wrote six man pages. Please read them, I spent a lot of time on them.
+  * Changed rule files to make three packages, one server and two clients.
+      vncserver is now the X server.
+      xvncviewer is now the client for X.
+      svncviewer is now the client for svgalib.
+
+ -- Marcus Brinkmann <Marcus.Brinkmann@ruhr-uni-bochum.de>  Sun, 15 Mar 1998 03:33:58 +0100
+
+vnc (3.3.1-3) unstable; urgency=low
+
+  * Move /usr/vnc to /usr/lib/vnc.
+  * Suggest vnc-doc.
+  * Clean up crud from experimental phase.
+
+ -- Christoph Lameter <clameter@debian.org>  Tue, 24 Feb 1998 16:05:10 -0800
+
+vnc (3.3.1-2) unstable; urgency=low
+
+  * Include description from slashdot on how to circumvent the font
+    compression problem using xfs. Move to unstable.
+
+ -- Christoph Lameter <clameter@debian.org>  Tue, 24 Feb 1998 07:00:14 -0800
+
+vnc (3.3.1-1) experimental; urgency=low
+
+  * Broken font handling. Both the binary from the upstream site and the
+    build sourcecode fail when setting the fontpath in the X server.
+    Thus experimental. Poked around but found no clue. If someone else
+    has time. HELP!
+
+ -- Christoph Lameter <clameter@debian.org>  Mon, 23 Feb 1998 15:00:26 -0800

@@ -1,0 +1,8 @@
+10-Xvnc--programs--Xserver--Xvnc.man.patch
+20-vncviewer--vncviewer.man.patch
+30-ftbfs-mips.patch
+debian-changes-1.3.9-6.1
+aarch64.patch
+0001-Clean-up-the-malloc-conflicts.patch
+0002-Add-ppc64el-support.patch
+more-arm64-fixes.patch

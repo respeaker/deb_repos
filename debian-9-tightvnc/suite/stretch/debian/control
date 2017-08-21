@@ -1,0 +1,56 @@
+Source: tightvnc
+Section: x11
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Ola Lundqvist <opal@debian.org>
+Standards-Version: 3.8.4
+Build-Depends: debhelper (>> 7.1), lynx, zlib1g-dev, libjpeg-dev, libxaw7-dev (>> 4.1.0), perl-modules, xfonts-base, xutils-dev, libx11-dev, libxau-dev, libxext-dev, libxi-dev, libxkbfile-dev, libxmu-dev, libxt-dev, x11proto-core-dev
+Homepage: http://www.tightvnc.com
+
+Package: tightvncserver
+Architecture: any
+Provides: xserver, vnc-server
+Depends: ${misc:Depends}, ${shlibs:Depends}, ${perl:Depends}, x11-common | xserver-common, x11-utils, xauth
+Recommends: xfonts-base, x11-xserver-utils
+Suggests: tightvnc-java
+Description: virtual network computing server software
+ VNC stands for Virtual Network Computing. It is, in essence, a remote
+ display system which allows you to view a computing `desktop' environment
+ not only on the machine where it is running, but from anywhere on the
+ Internet and from a wide variety of machine architectures.
+ .
+ This package provides a server to which X clients can connect and the
+ server generates a display that can be viewed with a vncviewer.
+ .
+ The difference between the tightvncserver and the normal vncserver is the
+ data encoding, optimized for low bandwidth connections. If the client do not
+ support jpeg or zlib encoding it can use the default one. Later versions of
+ vncserver (> 3.3.3r2) support a new automatic encoding that should be equally
+ good as the tightvnc encoding.
+ .
+ Note: This server does not support or need a display. You need a vncviewer to
+ see something. However, this viewer may also be on a computer running other
+ operating systems in the local net.
+
+Package: xtightvncviewer
+Architecture: any
+Provides: vncviewer, vnc-viewer
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: xfonts-base
+Suggests: tightvncserver, ssh
+Description: virtual network computing client software for X
+ VNC stands for Virtual Network Computing. It is, in essence, a remote
+ display system which allows you to view a computing `desktop' environment
+ not only on the machine where it is running, but from anywhere on the
+ Internet and from a wide variety of machine architectures.
+ .
+ It is implemented in a client/server model. This package provides a client
+ for X, with this you can connect to a vncserver somewhere in the network
+ and display its content in a window. There are vncserver available for other
+ operating systems.
+ .
+ The difference between the xtightvncviewer and the normal vncviewer is the
+ data encoding, optimized for low bandwidth connections. If the client do not
+ support jpeg or zlib encoding it can use the default one. Later versions of
+ xvncviewer (> 3.3.3r2) support a new automatic encoding that should be equally
+ good as the tightvnc encoding.

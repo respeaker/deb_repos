@@ -1,0 +1,2 @@
+version=3
+http://www.tightvnc.com/download.php .*tightvnc-([\d.]+)_unixsrc.tar.gz

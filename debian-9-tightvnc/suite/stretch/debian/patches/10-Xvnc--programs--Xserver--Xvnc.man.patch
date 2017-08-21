@@ -1,0 +1,30 @@
+From 52ede66b873905a7862cbe1b3faafe32c54fd1c5 Mon Sep 17 00:00:00 2001
+From: Jari Aalto <jari.aalto@cante.net>
+Date: Mon, 10 May 2010 21:34:01 +0300
+Subject: [PATCH] Xvnc/programs/Xserver/Xvnc.man: Fix spelling
+Organization: Private
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+
+Signed-off-by: Jari Aalto <jari.aalto@cante.net>
+---
+ Xvnc/programs/Xserver/Xvnc.man |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/Xvnc/programs/Xserver/Xvnc.man b/Xvnc/programs/Xserver/Xvnc.man
+index ce08077..2b4ead1 100644
+--- a/Xvnc/programs/Xserver/Xvnc.man
++++ b/Xvnc/programs/Xserver/Xvnc.man
+@@ -137,7 +137,7 @@ version of Xvnc by AT&T labs (TightVNC-specific).
+ .SH BUGS
+ There are many security problems in current Xvnc implementation. It's
+ recommended to restrict network access to Xvnc servers from untrusted
+-network adresses. Probably, the best way to secure Xvnc server is to
++network addresses. Probably, the best way to secure Xvnc server is to
+ allow only loopback connections from the server machine (the
+ \fI\-localhost\fR option) and to use SSH tunneling for remote access
+ to the Xvnc server. For details on SSH tunneling, see
+-- 
+1.7.0
+

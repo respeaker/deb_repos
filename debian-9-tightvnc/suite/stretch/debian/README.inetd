@@ -1,0 +1,45 @@
+This is what works for me.
+
+In /etc/services I have
+
+vnc-640x480x8   5950/tcp
+vnc-800x600x8   5951/tcp
+vnc-800x600x16  5952/tcp
+vnc-1024x768x16 5953/tcp
+
+These correspond to the various resultions for VNC windows.
+
+In  /etc/inetd.conf I have
+
+
+vnc-640x480x8   stream  tcp     nowait  nobody.tty      /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 640x480 -depth 8
+vnc-800x600x8   stream  tcp     nowait  nobody.tty      /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 800x600 -depth 8
+vnc-800x600x16  stream  tcp     nowait  nobody.tty      /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 800x600 -depth 16
+vnc-1024x768x16 stream  tcp     nowait  nobody.tty      /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 1024x768 -depth 16
+
+These arrange for VNC to be started at the appropriate resolutions.
+
+
+The -query localhost tells the X server which Xvnc starts to send an XDMCP
+query to localhost to get a display manager.
+
+I use KDM on my system, and so I had to alter/etc/kde2/kdm/kdmrc to change
+Enable=false to Enable=true
+
+I also changed /etc/kde2/kdm/kdmrc/Xaccess to allow connections.
+
+Also need to reload inetd (update-inetd may handle this in a package) and
+restart kdm
+
+You can then use a VNC connection to display 50 (i.e. systemname:50 in the
+vnc viewer) to get a  640x480x8 session.
+
+For GDM you need to change Enable=false to Enable=true in /etc/gdm/gdm.conf
+(but I have not tested this to see if anything else is needed)
+
+
+
+Using VNC this way has been useful for me - I hope it may be useful for
+someone else also.
+
+John Lines <john@paladin.demon.co.uk>

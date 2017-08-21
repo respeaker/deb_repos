@@ -1,0 +1,32 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "configure" ]; then
+    MAN=/usr/share/man/man1
+    BIN=/usr/bin
+    update-alternatives --install \
+	$BIN/vncserver       vncserver       $BIN/tightvncserver 70 \
+	--slave \
+	$MAN/vncserver.1.gz  vncserver.1.gz  $MAN/tightvncserver.1.gz \
+	--slave \
+	$BIN/vncconnect      vncconnect      $BIN/tightvncconnect \
+	--slave \
+	$MAN/vncconnect.1.gz vncconnect.1.gz $MAN/tightvncconnect.1.gz
+    update-alternatives --install \
+	$BIN/Xvnc            Xvnc            $BIN/Xtightvnc 70 \
+	--slave \
+	$MAN/Xvnc            Xvnc.1.gz       $MAN/Xtightvnc.1.gz
+    update-alternatives --install \
+        $BIN/vncpasswd      vncpasswd            $BIN/tightvncpasswd 70 \
+        --slave \
+        $MAN/vncpasswd.1.gz vncpasswd.1.gz       $MAN/tightvncpasswd.1.gz
+
+   
+    systemctl stop v2vncserver.service || true
+    systemctl enable v2vncserver.service || true
+fi
+
+#DEBHELPER#
+
+exit 0

@@ -1,0 +1,13 @@
+Document: tightvncserver
+Title: VNC Frequently Asked Questions
+Author: Edward Betts, Ola Lundqvist
+Abstract:Information about using and troubleshooting VNC
+Section: Network/Communication
+
+Format: Text
+Files: /usr/share/doc/tightvncserver/faq.txt.gz
+
+Format: HTML
+Index: /usr/share/doc/tightvncserver/faq.html
+Files: /usr/share/doc/tightvncserver/faq.html
+

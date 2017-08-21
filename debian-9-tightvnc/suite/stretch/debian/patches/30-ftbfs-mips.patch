@@ -1,0 +1,73 @@
+From ff21e5fad63bd8598114e8807b32fa49e45e0a22 Mon Sep 17 00:00:00 2001
+From: Jari Aalto <jari.aalto@cante.net>
+Date: Mon, 10 May 2010 23:59:39 +0300
+Subject: [PATCH] Xvnc/config/cf/linux.cf: Mips changes
+Organization: Private
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+
+Signed-off-by: Jari Aalto <jari.aalto@cante.net>
+---
+ Xvnc/config/cf/linux.cf |   31 ++++++++++++++++++++++++++++++-
+ 1 files changed, 30 insertions(+), 1 deletions(-)
+
+diff --git a/Xvnc/config/cf/linux.cf b/Xvnc/config/cf/linux.cf
+index 1769a58..ec04b4d 100644
+--- a/Xvnc/config/cf/linux.cf
++++ b/Xvnc/config/cf/linux.cf
+@@ -43,7 +43,8 @@ XCOMM platform:  $XFree86: xc/config/cf/linux.cf,v 3.57.2.12 1998/03/01 01:57:10
+ #if defined(AlphaArchitecture) || defined(PowerPCArchitecture) || \
+     defined(SparcArchitecture) || defined(ArmArchitecure) || \
+     defined(i386Architecture) || defined(s390Architecture) || \
+-    defined(s390xArchitecture)
++    defined(s390xArchitecture) || defined(MipsArchitecture) || \
++    defined(MipselArchitecure) || defined(HPArchitecture)
+ #define DefaultLinuxCLibMajorVersion	6
+ #else
+ #define DefaultLinuxCLibMajorVersion	5
+@@ -261,6 +262,13 @@ XCOMM binutils:	(LinuxBinUtilsMajorVersion)
+ #define ServerExtraDefines	-DGCCUSESGAS XFree86ServerDefines -D_XSERVER64
+ #endif /* x86_64Architecture */
+ 
++#ifdef ia64Architecture
++#define OptimizedCDebugFlags   -O2
++#define LinuxMachineDefines    -D__ia64__
++#define ServerOSDefines                XFree86ServerOSDefines -DDDXTIME -DPART_NET
++#define ServerExtraDefines     -DGCCUSESGAS XFree86ServerDefines -D_XSERVER64
++#endif /* x86_64Architecture */
++
+ #ifdef AlphaArchitecture
+ #define OptimizedCDebugFlags	-O2
+ #define LinuxMachineDefines	-D__alpha__
+@@ -322,6 +330,27 @@ XCOMM binutils:	(LinuxBinUtilsMajorVersion)
+ #endif
+ #endif /* SparcArchitecture */
+ 
++#ifdef MipsArchitecture
++#define OptimizedCDebugFlags	-O2
++#define LinuxMachineDefines	-D__mips__
++#define ServerOSDefines		XFree86ServerOSDefines -DDDXTIME -DPART_NET
++#define ServerExtraDefines	-DGCCUSESGAS XFree86ServerDefines
++#endif /* MipsArchitecture */
++
++#ifdef MipselArchitecture
++#define OptimizedCDebugFlags   -O2
++#define LinuxMachineDefines    -D__mips__
++#define ServerOSDefines        XFree86ServerOSDefines -DDDXTIME -DPART_NET
++#define ServerExtraDefines     -DGCCUSESGAS XFree86ServerDefines
++#endif /* MipselArchitecture */
++
++#ifdef HPArchitecture
++#define OptimizedCDebugFlags   -O2
++#define LinuxMachineDefines    -D__hppa__
++#define ServerOSDefines        XFree86ServerOSDefines -DDDXTIME -DPART_NET
++#define ServerExtraDefines     -DGCCUSESGAS XFree86ServerDefines
++#endif /* HPArchitecture */
++
+ /*================================================================
+    BEGIN ORL VNC modification
+    Always define _REENTRANT since we may use threaded libraries */
+-- 
+1.7.0
+

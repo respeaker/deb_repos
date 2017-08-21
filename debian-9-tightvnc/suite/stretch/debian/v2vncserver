@@ -1,0 +1,28 @@
+#!/bin/bash
+PATH="$PATH:/usr/bin/"
+DISPLAY="1"
+DEPTH="16"
+GEOMETRY="1280x720"
+OPTIONS="-depth ${DEPTH} -geometry ${GEOMETRY} :${DISPLAY}"
+MU="respeaker"
+MP="repseaker"
+
+
+case "$1" in
+start)
+/bin/mkdir -p /home/$MU/.vnc
+echo $MP | /usr/bin/vncpasswd -f > /home/$MU/.vnc/passwd
+chown -R $MU:$MU /home/$MU/.vnc
+/usr/bin/vncserver ${OPTIONS}
+;;
+
+stop)
+/usr/bin/vncserver -kill :${DISPLAY}
+;;
+
+restart)
+$0 stop
+$0 start
+;;
+esac
+exit 0

@@ -1,0 +1,30 @@
+From 867626319b1b6f1ea1e8af19a0b98460f2638491 Mon Sep 17 00:00:00 2001
+From: Jari Aalto <jari.aalto@cante.net>
+Date: Mon, 10 May 2010 22:13:46 +0300
+Subject: [PATCH] vncviewer/vncviewer.man: Fix hyphens
+Organization: Private
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+
+Signed-off-by: Jari Aalto <jari.aalto@cante.net>
+---
+ vncviewer/vncviewer.man |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/vncviewer/vncviewer.man b/vncviewer/vncviewer.man
+index c77efd9..b1e9938 100644
+--- a/vncviewer/vncviewer.man
++++ b/vncviewer/vncviewer.man
+@@ -342,7 +342,7 @@ When started with the \fB\-via\fR option, vncviewer reads the
+ \fBVNC_VIA_CMD\fR environment variable, expands patterns beginning
+ with the "%" character, and executes result as a command assuming that
+ it would create TCP tunnel that should be used for VNC connection. If
+-not set, this environment variable defaults to "/usr/bin/ssh -f -L
++not set, this environment variable defaults to "/usr/bin/ssh \-f \-L
+ %L:%H:%R %G sleep 20".
+ 
+ The following patterns are recognized in the \fBVNC_VIA_CMD\fR (note
+-- 
+1.7.0
+

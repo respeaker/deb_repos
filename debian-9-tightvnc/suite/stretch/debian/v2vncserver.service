@@ -1,0 +1,12 @@
+[Unit]
+Description=Manage VNC Server on this droplet
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/v2vncserver start
+ExecStop=/usr/bin/v2vncserver stop
+ExecReload=/usr/bin/v2vncserver restart
+User=repeaker
+
+[Install]
+WantedBy=multi-user.target
