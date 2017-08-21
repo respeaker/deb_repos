@@ -1,12 +1,12 @@
-#!/bin/bash -e
+#!/bin/bash -x
 
 if ! id | grep -q root; then
 	echo "must be run as root"
 	exit
 fi
 
-#proxy=""
-proxy="apt-proxy:3142/"
+proxy=""
+#proxy="apt-proxy:3142/"
 
 debian_server="deb.debian.org/debian"
 ubuntu_server="ports.ubuntu.com"
@@ -43,11 +43,11 @@ echo "\$distribution = 'stretch';" >> ~/.sbuildrc
 mirror="http://${proxy}${debian_server}"
 deboot="sid"
 
-mirror="http://${proxy}${ubuntu_server}"
-deboot="gutsy"
+#mirror="http://${proxy}${ubuntu_server}"
+#deboot="gutsy"
 
 if [ ! "x${builder}" = "xapm-mustang-8gb" ] ; then
-	dist="artful"
+	dist="stretch"
 	unset flavor
 	arch="armhf"
 	options="--exclude=debfoster"
