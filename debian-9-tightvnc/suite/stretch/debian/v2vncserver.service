@@ -6,7 +6,7 @@ Type=forking
 ExecStart=/usr/bin/v2vncserver start
 ExecStop=/usr/bin/v2vncserver stop
 ExecReload=/usr/bin/v2vncserver restart
-User=repeaker
+User=respeaker
 
 [Install]
 WantedBy=multi-user.target
