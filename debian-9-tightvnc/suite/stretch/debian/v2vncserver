@@ -4,15 +4,22 @@ DISPLAY="1"
 DEPTH="16"
 GEOMETRY="1280x720"
 OPTIONS="-depth ${DEPTH} -geometry ${GEOMETRY} :${DISPLAY}"
-MU="respeaker"
-MP="repseaker"
-
+PROG=/usr/bin/vncpasswd
+VNCPASS="respeaker"
 
 case "$1" in
 start)
-/bin/mkdir -p /home/$MU/.vnc
-echo $MP | /usr/bin/vncpasswd -f > /home/$MU/.vnc/passwd
-chown -R $MU:$MU /home/$MU/.vnc
+/usr/bin/expect <<EOF
+spawn "$PROG"
+expect "Password:"
+send "$VNCPASS\r"
+expect "Verify:"
+send "$VNCPASS\r"
+expect "Would"
+send "n\r"
+expect eof
+exit
+EOF
 /usr/bin/vncserver ${OPTIONS}
 ;;
 

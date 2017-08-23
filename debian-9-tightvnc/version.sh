@@ -19,4 +19,4 @@ debian_untar="${package_name}_${debian_version}.debian.tar.xz"
 debian_patch=""
 local_patch="respeaker2"
 
-jessie_version="~80+20170821+1"
+stretch_version="~re+20170821+1"
