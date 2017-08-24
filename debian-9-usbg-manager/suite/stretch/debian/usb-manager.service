@@ -1,0 +1,11 @@
+[Unit]
+Description=ReSpeaker USB gadget
+After=systemd-modules-load.service
+ 
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/usb-manager
+ 
+[Install]
+WantedBy=sysinit.target

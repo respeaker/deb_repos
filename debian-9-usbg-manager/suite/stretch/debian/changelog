@@ -1,0 +1,5 @@
+usbg-manager (2017.08.22~re+20170822+1) stretch; urgency=low
+
+  * Rebuild for repos.respeaker.io
+
+ -- Baozhu Zuo <zuobaozhu@gmail.com>  Tue, 22 Aug 2017 13:32:16 -0600

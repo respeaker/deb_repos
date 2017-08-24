@@ -1,0 +1,12 @@
+Source: usbg-manager
+Maintainer: Baozhu Zuo <zuobaozhu@gmail.com>
+Section: misc
+Priority: extra
+Build-Depends: debhelper (>= 9)
+Standards-Version: 0.0.1
+
+Package: usbg-manager
+Architecture: armhf
+Depends: ${misc:Depends}, gnupg2 | gnupg, udev
+Description: USB gadget manager for respeaker v2
+ The archive project works for respeaker v2 usb gadget serial network audio
