@@ -1,40 +1,15 @@
-Debian 8: (jessie): http://repos.rcn-ee.com/debian/
+# deb-repos
+
+1, Initial Setup
+
 ```
-deb [arch=armhf] http://repos.rcn-ee.com/debian/ jessie main
-#deb-src [arch=armhf] http://repos.rcn-ee.com/debian/ jessie main
+#sudo apt install ubuntu-dev-tools
+#mk-sbuild --debootstrap-include=devscripts stretch
 ```
 
-Debian 9: (stretch): http://repos.rcn-ee.com/debian/
-```
-deb [arch=armhf] http://repos.rcn-ee.com/debian/ stretch main
-#deb-src [arch=armhf] http://repos.rcn-ee.com/debian/ stretch main
-```
+2, build package
 
-Debian 10: (buster): http://repos.rcn-ee.com/debian/
 ```
-deb [arch=armhf] http://repos.rcn-ee.com/debian/ buster main
-#deb-src [arch=armhf] http://repos.rcn-ee.com/debian/ buster main
-```
-
-Ubuntu 16.04 lts: (xenial): http://repos.rcn-ee.com/ubuntu/
-```
-deb [arch=armhf] http://repos.rcn-ee.com/ubuntu/ xenial main
-#deb-src [arch=armhf] http://repos.rcn-ee.com/ubuntu/ xenial main
-```
-
-Ubuntu 17.04: (zesty): http://repos.rcn-ee.com/ubuntu/
-```
-deb [arch=armhf] http://repos.rcn-ee.com/ubuntu/ zesty main
-#deb-src [arch=armhf] http://repos.rcn-ee.com/ubuntu/ zesty main
-```
-
-Ubuntu 17.10: (artful): http://repos.rcn-ee.com/ubuntu/
-```
-deb [arch=armhf] http://repos.rcn-ee.com/ubuntu/ artful main
-#deb-src [arch=armhf] http://repos.rcn-ee.com/ubuntu/ artful main
-```
-
-keyring:
-```
-sudo apt-get install rcn-ee-archive-keyring
+cd any_package
+sudo ../tools/run.sh
 ```
