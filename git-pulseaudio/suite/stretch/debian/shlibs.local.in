@@ -1,0 +1,2 @@
+libpulsecommon PA_MAJORMINOR libpulse0 (= ${binary:Version})
+libpulsecore PA_MAJORMINOR pulseaudio (= ${binary:Version})

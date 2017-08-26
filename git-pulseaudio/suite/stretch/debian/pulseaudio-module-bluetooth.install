@@ -1,0 +1,5 @@
+usr/lib/pulse-*/modules/libbluez*-util.so
+usr/lib/pulse-*/modules/module-bluetooth-discover.so
+usr/lib/pulse-*/modules/module-bluetooth-policy.so
+usr/lib/pulse-*/modules/module-bluez*-device.so
+usr/lib/pulse-*/modules/module-bluez*-discover.so

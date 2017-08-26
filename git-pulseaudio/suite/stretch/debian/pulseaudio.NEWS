@@ -1,0 +1,10 @@
+pulseaudio (5.0-3) unstable; urgency=medium
+
+  Pulseaudio no longer installs the initscript for a system wide daemon.
+  If you use systemwide mode (you probably shouldn't), you can find the init
+  script plus default file in /usr/share/doc/pulseaudio/examples/
+
+  If you have modified the init script or the default file, you will find a
+  backup of the file with a .dpkg-bak suffix.
+
+ -- Felipe Sateler <fsateler@debian.org>  Fri, 25 Apr 2014 16:24:07 -0300

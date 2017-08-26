@@ -1,0 +1,74 @@
+#!/usr/bin/make -f
+
+DPKG_EXPORT_BUILDFLAGS = 1
+
+DEB_LDFLAGS_MAINT_APPEND = -Wl,--no-as-needed
+
+DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+include /usr/share/dpkg/default.mk
+
+export AUTOPOINT=intltoolize --automake --copy
+
+# Needed for testsuite
+export XDG_RUNTIME_DIR = $(CURDIR)/debian/tmp/tmp/xdgruntimedir
+export CK_TIMEOUT_MULTIPLIER = 0
+# Libs should be in the multi-arch path, but the modules should be in the
+# normal directory as pulseaudio is foreign
+DEB_CONFIGURE_EXTRA_FLAGS = --enable-x11 --disable-hal-compat \
+  --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) \
+  --with-module-dir=\$${prefix}/lib/pulse-$(DEB_VERSION_UPSTREAM)/modules \
+  --with-zsh-completion-dir=\$${datadir}/zsh/vendor-completions \
+  --with-bash-completion-dir=\$${datadir}/bash-completion/completions \
+  --with-systemduserunitdir=\$${prefix}/lib/systemd/user \
+  --disable-bluez4
+
+
+PA_MAJORMINOR = $(shell echo $(DEB_VERSION_UPSTREAM) | sed -r -e 's/^([0-9]+\.[0-9]+).*/\1/')
+
+ifeq ($(words $(sort $(filter stage1,$(DEB_BUILD_PROFILES)))),1)
+  DEB_CONFIGURE_EXTRA_FLAGS += --disable-bluez5
+endif
+
+%:
+	dh $@ --with autoreconf
+
+override_dh_update_autotools_config:
+	echo "============================"     
+	touch .tarball-version
+	echo "10.99.1" > .tarball-version
+	./autogen.sh
+	echo "============================"
+	
+override_dh_auto_configure: 
+	dh_auto_configure -- $(DEB_CONFIGURE_EXTRA_FLAGS)
+
+override_dh_auto_install:
+	dh_auto_install
+	find debian/tmp -name "*.la" -delete
+	install -d $(CURDIR)/debian/tmp/usr/share/apport/package-hooks
+	cp $(CURDIR)/debian/apport-hook.py $(CURDIR)/debian/tmp/usr/share/apport/package-hooks/source_pulseaudio.py
+ifeq ($(DEB_HOST_ARCH_OS),linux)
+	mkdir -p $(CURDIR)/debian/tmp/usr/share/alsa/alsa.conf.d
+	cp -a $(CURDIR)/debian/pulse.conf \
+		$(CURDIR)/debian/tmp/usr/share/alsa/alsa.conf.d
+	cp -a $(CURDIR)/debian/pulse-alsa.conf $(CURDIR)/debian/tmp/usr/share/alsa
+endif
+
+override_dh_makeshlibs:
+	sed 's/PA_MAJORMINOR/$(PA_MAJORMINOR)/' debian/shlibs.local.in > debian/shlibs.local
+	dh_makeshlibs --exclude=usr/lib/pulse-$(DEB_VERSION_UPSTREAM)/modules \
+		--exclude=usr/lib/$(DEB_HOST_MULTIARCH)/pulseaudio
+
+override_dh_shlibdeps:
+	dh_shlibdeps --libpackage=pulseaudio
+
+override_dh_install:
+	dh_install --fail-missing
+
+override_dh_installdocs:
+	dh_installdocs -A NEWS README
+
+override_dh_clean:
+	dh_clean
+	rm -f debian/shlibs.local
