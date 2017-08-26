@@ -1,0 +1,31 @@
+src/main.conf etc/bluetooth
+profiles/input/input.conf etc/bluetooth
+profiles/network/network.conf etc/bluetooth
+profiles/proximity/proximity.conf etc/bluetooth
+usr/lib/bluetooth/bluetoothd
+usr/bin/bluetoothctl
+usr/bin/bccmd
+usr/bin/bluemoon
+usr/bin/btattach
+usr/bin/btmon
+usr/bin/hciattach
+usr/bin/hciconfig bin/
+usr/bin/hcitool
+usr/bin/sdptool
+usr/bin/rctest
+usr/bin/ciptool
+usr/bin/hex2hcd
+usr/bin/l2ping
+usr/bin/l2test
+usr/bin/rfcomm
+usr/bin/rctest
+usr/bin/mpris-proxy
+tools/btmgmt usr/bin
+tools/obexctl usr/bin
+lib/udev/hid2hci
+lib/udev/rules.d/97-hid2hci.rules
+attrib/gatttool usr/bin
+#-- for systemd
+lib/systemd/system/bluetooth.service
+etc/dbus-1/system.d/bluetooth.conf
+usr/share/dbus-1/system-services/org.bluez.service

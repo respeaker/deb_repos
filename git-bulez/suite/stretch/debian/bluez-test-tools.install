@@ -1,0 +1,4 @@
+tools/*-tester usr/bin
+emulator/b1ee usr/bin
+emulator/btvirt usr/bin
+emulator/hfp usr/bin
