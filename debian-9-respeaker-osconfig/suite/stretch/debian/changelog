@@ -1,0 +1,5 @@
+respeaker-osconfig (2017.08.28~re+20170828+1) stretch; urgency=low
+
+  * Rebuild for repos.respeaker.io
+
+ -- Baozhu Zuo <zuobaozhu@gmail.com>  Tue, 28 Aug 2017 13:32:16 -0600

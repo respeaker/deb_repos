@@ -27,4 +27,6 @@ ln -s /sys/kernel/config/usb_gadget/g/functions/acm.usb0   /sys/kernel/config/us
 
 udevadm settle -t 5 || :
 ls /sys/class/udc/ > /sys/kernel/config/usb_gadget/g/UDC 
-
+if [ -d /sys/class/tty/ttyGS0/ ] ; then
+	systemctl start serial-getty@ttyGS0.service || true
+fi
