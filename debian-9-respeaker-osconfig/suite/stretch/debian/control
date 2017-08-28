@@ -8,5 +8,5 @@ Standards-Version: 0.0.1
 Package: respeaker-osconfig
 Architecture: armhf
 Depends: ${misc:Depends}, gnupg2 | gnupg
-Description: wifi/bt firmwares
- The archive project works for respeaker v2 wifi/bt firmwares
+Description: respeaker debian os config files
+ some os config files
