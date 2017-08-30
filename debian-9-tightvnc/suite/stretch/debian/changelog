@@ -1,4 +1,11 @@
-tightvnc (1.3.10-0ubuntu3) xenial; urgency=medium
+tightvnc (1:1.3.10-0ubuntu4~re+20170829+1) stretch; urgency=medium
+
+  * add systemd support
+  * set default display resolution 1024x576
+
+ -- Baozhu Zuo <zuobaozhu@gmail.com>  Aug, 30 Mar 2017 15:45:53 -0600
+
+tightvnc (1:1.3.10-0ubuntu3) xenial; urgency=medium
 
   * debian/patches/more-arm64-fixes.patch: Add patch to complete arm64 port.
     Patch merged from Debian.  Thanks to Riku Voipio <riku.voipio@linaro.org>.

@@ -2,7 +2,7 @@
 PATH="$PATH:/usr/bin/"
 DISPLAY="1"
 DEPTH="16"
-GEOMETRY="1280x720"
+GEOMETRY="1024x576"
 OPTIONS="-depth ${DEPTH} -geometry ${GEOMETRY} :${DISPLAY}"
 PROG=/usr/bin/vncpasswd
 VNCPASS="respeaker"
