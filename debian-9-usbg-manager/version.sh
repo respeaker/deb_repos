@@ -2,7 +2,7 @@
 
 package_name="usbg-manager"
 debian_pkg_name="${package_name}"
-package_version="2017.08.22"
+package_version="2017.08.29"
 package_source=""
 src_dir=""
 
@@ -15,4 +15,4 @@ debian_version="${package_version}"
 debian_untar=""
 debian_patch=""
 
-stretch_version="~re+20170822+1"
+stretch_version="~re+20170829+1"
