@@ -40,7 +40,7 @@ Build-Depends: debhelper (>= 9.20141010),
     libx11-xcb-dev,
     libxcb1-dev (>= 1.6),
     libxtst-dev
-Standards-Version: 4.0.0
+Standards-Version: 4.1.0
 Vcs-Git: https://anonscm.debian.org/git/pkg-pulseaudio/pulseaudio.git
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-pulseaudio/pulseaudio.git
 Homepage: http://www.pulseaudio.org
@@ -53,8 +53,6 @@ Depends: ${shlibs:Depends}, ${misc:Depends}, adduser,
   libasound2-plugins [linux-any],
   libpulse0 (= ${binary:Version}),
   pulseaudio-utils
-Conflicts: pulseaudio-module-udev (<< 9.0-2), pulseaudio-module-x11 (<< 9.0-2)
-Replaces: pulseaudio-module-udev (<< 9.0-2), pulseaudio-module-x11 (<< 9.0-2)
 Recommends: rtkit
 Suggests: udev [linux-any], pavumeter, pavucontrol, paman, paprefs
 Description: PulseAudio sound server
@@ -203,8 +201,6 @@ Package: pulseaudio-equalizer
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
  python, python-qt4, python-sip, python-qt4-dbus, python-dbus
-Breaks: pulseaudio (<< 9.0-3~)
-Replaces: pulseaudio (<< 9.0-3~)
 Description: Equalizer sink module for PulseAudio sound server
  PulseAudio, previously known as Polypaudio, is a sound server for POSIX and
  WIN32 systems. It is a drop in replacement for the ESD sound server with

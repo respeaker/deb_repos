@@ -13,6 +13,7 @@ export AUTOPOINT=intltoolize --automake --copy
 # Needed for testsuite
 export XDG_RUNTIME_DIR = $(CURDIR)/debian/tmp/tmp/xdgruntimedir
 export CK_TIMEOUT_MULTIPLIER = 0
+
 # Libs should be in the multi-arch path, but the modules should be in the
 # normal directory as pulseaudio is foreign
 DEB_CONFIGURE_EXTRA_FLAGS = --enable-x11 --disable-hal-compat \
@@ -36,11 +37,11 @@ endif
 override_dh_update_autotools_config:
 	echo "============================"     
 	touch .tarball-version
-	echo "10.99.1" > .tarball-version
+	echo "11.0.1" > .tarball-version
 	./autogen.sh
 	echo "============================"
-	
-override_dh_auto_configure: 
+
+override_dh_auto_configure:
 	dh_auto_configure -- $(DEB_CONFIGURE_EXTRA_FLAGS)
 
 override_dh_auto_install:

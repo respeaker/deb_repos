@@ -1,8 +1,11 @@
-pulseaudio (10.99.1-7-g6921e-0respeaker~re+20170825+1) stretch; urgency=low
+pulseaudio (11.0.1-0respeaker~re+20170912+1) stretch; urgency=medium
 
-  * New upstream release candidate 10.99.2
+  * New upstream version 11.0
+  * Bump Standards-Version
+  * Drop Conflicts/Replaces against old packages.
+    Stretch has version 10 so all of the versions are already satisfied
 
- -- Baozhu Zuo <zuobaozhu@gmail.com>  Wed, 26 Jul 2017 09:46:27 -0400
+ -- Felipe Sateler <fsateler@debian.org>  Tue, 12 Sep 2017 21:02:12 -0300
 
 pulseaudio (10.99.1-1) experimental; urgency=medium
 
