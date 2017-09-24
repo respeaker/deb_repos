@@ -1,0 +1,98 @@
+Source: upm
+Priority: optional
+Maintainer: Fathi Boudra <fabo@debian.org>
+Build-Depends: cmake,
+               debhelper (>=9),
+               dh-python,
+               doxygen,
+               graphviz,
+               libjpeg-dev,
+               libjs-jquery,
+               libjs-underscore,
+               libmraa-dev (>= 1.1.1),
+               pkg-config,
+               python-dev,
+               python-sphinx,
+               swig3.0,
+	       nodejs-dev
+Standards-Version: 3.9.4
+Section: libs
+Homepage: http://iotdk.intel.com/docs/master/upm/
+
+Package: libupm-dev
+Section: libdevel
+Architecture: amd64 arm64 armhf
+Depends: libmraa-dev, libupm0 (= ${binary:Version}), ${misc:Depends}
+Description: Sensor/Actuator repository for MRAA (development)
+ UPM is a high level repository for sensors that use MRAA. Each sensor
+ links to MRAA and are not meant to be interlinked although some
+ groups of sensors may be.
+ .
+ This package contains the library development files.
+
+Package: libupm0
+Architecture: amd64 arm64 armhf
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Sensor/Actuator repository for MRAA (runtime)
+ UPM is a high level repository for sensors that use MRAA. Each sensor
+ links to MRAA and are not meant to be interlinked although some
+ groups of sensors may be.
+ .
+ This package contains the library used at runtime.
+
+Package: libupm0-dbg
+Architecture: amd64 arm64 armhf
+Section: debug
+Priority: extra
+Depends: libupm0 (= ${binary:Version}), ${misc:Depends}
+Description: debugging symbols for UPM
+ UPM is a high level repository for sensors that use MRAA. Each sensor
+ links to MRAA and are not meant to be interlinked although some
+ groups of sensors may be.
+ .
+ This package contains UPM debugging symbols.
+
+Package: upm-doc
+Architecture: all
+Section: doc
+Depends: libjs-jquery, libjs-underscore, ${misc:Depends}
+Description: documentation for UPM
+ UPM is a high level repository for sensors that use MRAA. Each sensor
+ links to MRAA and are not meant to be interlinked although some
+ groups of sensors may be.
+ .
+ This package contains UPM documentation.
+
+Package: upm-examples
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Description: examples for UPM
+ UPM is a high level repository for sensors that use MRAA. Each sensor
+ links to MRAA and are not meant to be interlinked although some
+ groups of sensors may be.
+ .
+ This package contains UPM examples.
+
+Package: python-upm
+Architecture: amd64 arm64 armhf
+Section: python
+Depends: ${misc:Depends}, ${python:Depends}, ${shlibs:Depends}
+Description: Python binding for UPM
+ UPM is a high level repository for sensors that use MRAA. Each sensor
+ links to MRAA and are not meant to be interlinked although some
+ groups of sensors may be.
+ .
+ This package contains UPM Python binding.
+
+Package: python-upm-dbg
+Architecture: amd64 arm64 armhf
+Section: debug
+Priority: extra
+Depends: python-upm (= ${binary:Version}), ${misc:Depends}
+Description: debugging symbols for MRAA Python binding
+ UPM is a high level repository for sensors that use MRAA. Each sensor
+ links to MRAA and are not meant to be interlinked although some
+ groups of sensors may be.
+ .
+ This package contains the debugging symbols for UPM Python binding.

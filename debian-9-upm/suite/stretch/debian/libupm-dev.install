@@ -1,0 +1,4 @@
+usr/include/upm/*.h
+usr/include/upm/*.hpp
+usr/lib/*/libupm-*.so
+usr/lib/*/pkgconfig/upm-*.pc
