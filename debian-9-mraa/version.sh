@@ -4,7 +4,7 @@
 
 package_name="mraa"
 debian_pkg_name="${package_name}"
-package_version="1.8.0-git20170923"
+package_version="1.8.0-git20170927"
 package_source="${package_name}_${package_version}.orig.tar.xz"
 src_dir="${package_name}_${package_version}"
 

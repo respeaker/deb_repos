@@ -2,10 +2,9 @@ Source: mraa
 Priority: optional
 Maintainer: Tom Ingleby <tom@ewsting.org>
 Build-Depends: chrpath,
-               cmake ,
+               cmake,
                debhelper (>=9),
                dh-python,
-               dh-systemd [linux-any],
                doxygen,
                graphviz,
                libjs-jquery,
@@ -15,11 +14,7 @@ Build-Depends: chrpath,
                python3-dev,
                python-sphinx,
                swig,
-               libjson-c-dev,
-               libudev-dev,
-               javahelper (>= 0.25),
-               default-jdk,
-               nodejs-dev
+               libjson-c-dev
 Standards-Version: 3.9.6
 Section: libs
 Homepage: http://iotdk.intel.com/docs/master/mraa/
@@ -159,58 +154,3 @@ Description: Python binding for mraa (documentation)
  Currently interfaces supported include GPIO/PWM/I2C/SPI.
  .
  This package contains the documentation for mraa Python binding.
-
-Package: mraa-imraa
-Architecture: amd64 i386 arm64 armhf
-Section: utils
-Depends: ${misc:Depends}, ${shlibs:Depends}, dfu-util (>=0.9), mraa-firmata-fw
-Description: mraa imraa tool (firmata)
- mraa (libmraa) is library for interacting with userspace I/O on GNU/Linux
- platforms. The library abstracts platform quirks away from the end user.
- Currently interfaces supported include GPIO/PWM/I2C/SPI.
- .
- This package contains mraa imraa tool. Daemon that configures firmata devices
-
-Package: mraa-imraa-dbg
-Architecture: amd64 i386 arm64 armhf
-Section: debug
-Priority: extra
-Depends: mraa-imraa (= ${binary:Version}), ${misc:Depends}
-Description: debugging symbols for mraa imraa tool
- mraa (libmraa) is library for interacting with userspace I/O on GNU/Linux
- platforms. The library abstracts platform quirks away from the end user.
- Currently interfaces supported include GPIO/PWM/I2C/SPI.
-
-Package: libmraa-java
-Architecture: amd64 i386 arm64 armhf
-Section: java
-Depends: libmraa1 (= ${binary:Version}), ${misc:Depends}
-Description: java bindings for mraa 
- mraa (libmraa) is library for interacting with userspace I/O on GNU/Linux
- platforms. The library abstracts platform quirks away from the end user.
- Currently interfaces supported include GPIO/PWM/I2C/SPI.
- .
- This package contains mraa Java binding.
-
-Package: libmraa-java-dbg
-Architecture: amd64 i386 arm64 armhf
-Section: debug
-Priority: extra
-Depends: libmraa-java (= ${binary:Version}), ${misc:Depends}
-Description: debugging symbols for mraa java binding
- mraa (libmraa) is library for interacting with userspace I/O on GNU/Linux
- platforms. The library abstracts platform quirks away from the end user.
- Currently interfaces supported include GPIO/PWM/I2C/SPI.
- .
- This package contains the debugging symbols for mraa java binding.
-
-Package: node-mraa
-Architecture: amd64 i386 arm64 armhf
-Depends: libmraa1 (= ${binary:Version}), ${misc:Depends}
-Description: nodejs bindings for mraa 
- mraa (libmraa) is library for interacting with userspace I/O on GNU/Linux
- platforms. The library abstracts platform quirks away from the end user.
- Currently interfaces supported include GPIO/PWM/I2C/SPI.
- .
- This package contains mraa nodejs binding.
-

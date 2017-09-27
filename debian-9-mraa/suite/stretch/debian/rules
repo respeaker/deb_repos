@@ -13,24 +13,16 @@
 
 export DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/default.mk
-export JAVA_HOME=/usr/lib/jvm/default-java
 
 %:
-	dh $@ --list-missing --parallel --with python2 --with=systemd --with javahelper
+	dh $@ --list-missing --parallel --with python2
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
 	  -DBUILDDOC=ON \
 	  -DBUILDSWIGPYTHON=ON \
 	  -DBUILDSWIGNODE=OFF \
-	  -DBUILDSWIGJAVA=OFF \
-	  -DFIRMATA=OFF \
-	  -DINSTALLTOOLS=ON \
-	  -DIMRAA=OFF
-
-override_dh_install:
-	dh_install
-	jh_installlibs -plibmraa-java
+	  -DINSTALLTOOLS=ON
 
 override_dh_auto_test:
 	dh_auto_test
@@ -49,4 +41,3 @@ override_dh_strip:
 	dh_strip -pmraa-tools --dbg-package=mraa-tools-dbg
 	dh_strip -ppython-mraa --dbg-package=python-mraa-dbg
 	dh_strip -ppython3-mraa --dbg-package=python3-mraa-dbg
-	dh_strip -plibmraa-java --dbg-package=libmraa-java-dbg
