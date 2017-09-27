@@ -1,33 +1,74 @@
 upm (1.3.0-git20170923-re2~re2+20170923+1) stretch; urgency=medium
 
-  * Linaro CI build: other
+  * respeaker.io rebuild
 
  -- Baozhu Zuo <zuobaozhu@gmail.com>  Sun, 23 Sep 2017 09:52:40 +0000
 
-upm (0.8.0-1linarostretch1) stretch; urgency=medium
+upm (1.3.0-2) xenial; urgency=medium
 
-  * Linaro CI build: other
+  * Adds Node Module with thanks to Flavian Manea
 
- -- Fathi Boudra <fabo@debian.org>  Sun, 30 Oct 2016 09:52:40 +0000
+ -- Tom Ingleby <tom@ewsting.org>  Tue, 25 Jul 2017 09:49:31 +0000
 
-upm (0.8.0-1) unstable; urgency=medium
+upm (1.3.0-1.1) xenial; urgency=medium
 
-  * New upstream release.
-  * debian/control:
-    - bump b-d to mraa >= 1.1.1
-    - add libjpeg-dev b-d
-  * debian/*.install: update to multiarch paths.
+  * Dev package fixups
 
- -- Fathi Boudra <fabo@debian.org>  Sun, 30 Oct 2016 08:01:22 +0200
+ -- Tom Ingleby <tom@ewsting.org>  Thu, 01 Jun 2017 12:18:23 +0000
 
-upm (0.6.1-2) unstable; urgency=medium
+upm (1.3.0-1) xenial; urgency=medium
 
-  * debian/control: add libmraa-dev dependency to libupm-dev.
+  * Thanks to Flavian Costin Manea <flavian.manea@rinftech.com>
+  * Upgrade to upm 1.3.0
+  * Add support to upm-java
 
- -- Fathi Boudra <fabo@debian.org>  Fri, 08 Apr 2016 16:36:46 +0300
+ -- Tom Ingleby <tom@ewsting.org>  Mon, 29 May 2017 16:07:10 +0000
 
-upm (0.6.1-1) unstable; urgency=low
+upm (1.2.0-1) xenial; urgency=medium
 
-  * Initial release
+  * Upgrade to upm 1.2.0
 
- -- Fathi Boudra <fabo@debian.org>  Thu, 07 Apr 2016 11:04:11 +0300
+ -- Tom Ingleby <tom@ewsting.org>  Tue, 11 Apr 2017 08:14:46 +0000
+
+upm (1.0.0-4) xenial; urgency=medium
+
+  * Reintroduce shlibs checks
+
+ -- Tom Ingleby <tom@ewsting.org>  Thu, 10 Nov 2016 10:04:18 +0000
+
+upm (1.0.0-3) xenial; urgency=medium
+
+  * Update lib install to 1
+
+ -- Tom Ingleby <tom@ewsting.org>  Wed, 09 Nov 2016 16:13:02 +0000
+
+upm (1.0.0-2.1) xenial; urgency=medium
+
+  * Add more missing build dependancies.
+
+ -- Tom Ingleby <tom@ewsting.org>  Sat, 05 Nov 2016 16:49:39 +0000
+
+upm (1.0.0-2) xenial; urgency=medium
+
+  * Add missing build dependancy.
+
+ -- Tom Ingleby <tom@ewsting.org>  Sat, 05 Nov 2016 16:45:39 +0000
+
+upm (1.0.0-1) xenial; urgency=medium
+
+  * Update to 1.0.0
+  * Enable python2 and python3
+
+ -- Tom Ingleby <tom@ewsting.org>  Fri, 04 Nov 2016 15:50:28 +0000
+
+upm (0.7.3-1.1) xenial; urgency=medium
+
+  * Add Python to build depends
+
+ -- Tom Ingleby <tom@ewsting.org>  Sun, 14 Aug 2016 21:24:29 +0000
+
+upm (0.7.3-1) xenial; urgency=medium
+
+  * Initial release.
+
+ -- Tom Ingleby <tom@ewsting.org>  Sun, 14 Aug 2016 20:27:01 +0000
