@@ -1,10 +1,10 @@
 #!/bin/bash -e
 
-#https://github.com/respeaker/up
+#https://github.com/respeaker/upm
 
 package_name="upm"
 debian_pkg_name="${package_name}"
-package_version="1.3.0-git20170923"
+package_version="1.3.0-git20170928"
 package_source="${package_name}_${package_version}.orig.tar.xz"
 src_dir="${package_name}_${package_version}"
 
@@ -18,4 +18,4 @@ debian_patch=""
 debian_diff=""
 local_patch="re2"
 
-stretch_version="~re2+20170923+1"
+stretch_version="~re2+20170928+1"
