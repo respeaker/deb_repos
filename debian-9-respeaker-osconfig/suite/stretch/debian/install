@@ -1,1 +1,3 @@
 os/asound.state /var/lib/alsa/
+os/seeed-voicecard.conf  /usr/share/pulseaudio/alsa-mixer/profile-sets/
+os/audio.conf  /etc/bluetooth/
