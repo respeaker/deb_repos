@@ -1,0 +1,39 @@
+#!/bin/sh -e
+#
+# Copyright (c) 2017 Baozhu Zuo <zuobaozhu@gmail.com>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+if [ -z "`hciconfig -a`" ] ; then
+    if [ ! -d "/etc/firmware" ] ; then
+        ln -s /system/etc/firmware/ /etc/firmware
+    fi
+    if [ ! -f "/etc/firmware/ap6212/BCM43430A1.hcd" ] ; then
+        cp /etc/firmware/bcm43438a1.hcd /etc/firmware/ap6212/BCM43430A1.hcd
+    fi    
+    systemctl stop bluetooth.service
+    echo '0' > /sys/class/rfkill/rfkill0/state
+    echo '1' > /sys/class/rfkill/rfkill0/state
+    echo "" > /dev/ttyS1 
+    hciattach /dev/ttyS1 bcm43xx 1500000
+    sleep 1
+    rfkill unblock 3
+    systemctl restart bluetooth.service
+    hciconfig hci0 up
+fi

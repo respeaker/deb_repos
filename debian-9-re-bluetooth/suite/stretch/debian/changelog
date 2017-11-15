@@ -1,0 +1,5 @@
+re-bluetooth (2017.11.15~re+20171115+1) stretch; urgency=low
+
+  * Rebuild for repos.respeaker.io
+
+ -- Baozhu Zuo <zuobaozhu@gmail.com>  Tue, 15 Nov 2017 13:32:16 -0600

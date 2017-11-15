@@ -1,0 +1,12 @@
+Source: re-bluetooth
+Maintainer: Baozhu Zuo <zuobaozhu@gmail.com>
+Section: misc
+Priority: extra
+Build-Depends: debhelper (>= 9)
+Standards-Version: 0.0.1
+
+Package: re-bluetooth
+Architecture: armhf
+Depends: ${misc:Depends}, gnupg2 | gnupg, udev
+Description:  respeaker v2 bluetooth preinit script
+ The archive project works for respeaker v2 bluetooth

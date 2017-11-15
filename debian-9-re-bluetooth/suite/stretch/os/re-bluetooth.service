@@ -1,0 +1,11 @@
+[Unit]
+Description=ReSpeaker Bluetooth service
+After=bluetooth.service
+ 
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/re-bluetooth
+ 
+[Install]
+WantedBy=sysinit.target

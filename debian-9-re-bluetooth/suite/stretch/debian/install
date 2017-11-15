@@ -1,0 +1,2 @@
+os/re-bluetooth.service  	/lib/systemd/system
+os/re-bluetooth		/usr/bin
