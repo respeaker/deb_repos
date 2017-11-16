@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-#export DH_VERBOSE = 1
+export DH_VERBOSE = 1
 
 # see FEATURE AREAS in dpkg-buildflags(1)
 #export DEB_BUILD_MAINT_OPTIONS = hardening=+all
@@ -12,17 +12,26 @@
 #export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
 export DPKG_EXPORT_BUILDFLAGS = 1
+
 include /usr/share/dpkg/default.mk
+export JAVA_HOME=/usr/lib/jvm/default-java
 
 %:
-	dh $@ --list-missing --parallel --with python2
+	dh $@ --list-missing --parallel --with python2 --with=systemd --with javahelper
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
 	  -DBUILDDOC=ON \
 	  -DBUILDSWIGPYTHON=ON \
 	  -DBUILDSWIGNODE=OFF \
-	  -DINSTALLTOOLS=ON
+	  -DBUILDSWIGJAVA=ON \
+	  -DFIRMATA=ON \
+	  -DINSTALLTOOLS=ON \
+	  -DIMRAA=on
+
+override_dh_install:
+	dh_install
+	jh_installlibs -plibmraa-java
 
 override_dh_auto_test:
 	dh_auto_test
@@ -41,3 +50,4 @@ override_dh_strip:
 	dh_strip -pmraa-tools --dbg-package=mraa-tools-dbg
 	dh_strip -ppython-mraa --dbg-package=python-mraa-dbg
 	dh_strip -ppython3-mraa --dbg-package=python3-mraa-dbg
+	dh_strip -plibmraa-java --dbg-package=libmraa-java-dbg

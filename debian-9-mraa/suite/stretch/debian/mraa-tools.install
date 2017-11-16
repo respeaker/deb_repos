@@ -1,1 +1,2 @@
-usr/bin/mraa-*
+usr/bin/mraa-gpio
+usr/bin/mraa-i2c
