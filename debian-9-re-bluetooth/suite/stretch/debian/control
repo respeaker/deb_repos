@@ -2,7 +2,8 @@ Source: re-bluetooth
 Maintainer: Baozhu Zuo <zuobaozhu@gmail.com>
 Section: misc
 Priority: extra
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper (>= 9),
+		bluez,
 Standards-Version: 0.0.1
 
 Package: re-bluetooth
