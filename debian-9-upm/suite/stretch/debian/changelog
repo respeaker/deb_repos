@@ -1,3 +1,8 @@
+upm (1.6.0-git20180813-pi20180813) stretch; urgency=medium
+
+  * Rebuild for Raspberry Pi 3B
+
+ -- turmary <turmary@126.com>  Mon, 13 Aug 2018 11:02:30 -0500
 
 upm (1.5.0-git20171116-re2~re2+20171116+1) stretch; urgency=medium
 

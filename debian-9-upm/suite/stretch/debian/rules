@@ -14,16 +14,15 @@
 export DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/default.mk
 export JAVA_HOME=/usr/lib/jvm/default-java
-
 %:
 	dh $@ --list-missing --parallel --with javahelper
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-	  -DBUILDDOC=ON \
+	  -DBUILDDOC=OFF \
 	  -DBUILDSWIGJAVA=ON \
 	  -DBUILDSWIGNODE=OFF \
-	  -DBUILDEXAMPLES=ON
+	  -DBUILDEXAMPLES=OFF
 
 override_dh_install:
 	dh_install
