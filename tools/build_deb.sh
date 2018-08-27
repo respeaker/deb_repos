@@ -8,7 +8,7 @@ builder=`cat /etc/hostname`
 build () {
 	if [ -f ${localdir}/incoming/${suite}/${debian_pkg_name}_${debian_version}/${dsc_file} ] ; then
 		echo "-----------------"
-		echo "sbuild ${options} http://httphost/farm/incoming/${suite}/${debian_pkg_name}_${debian_version}/${dsc_file}"
+		echo "sbuild ${options} ${localdir}/incoming/${suite}/${debian_pkg_name}_${debian_version}/${dsc_file}"
 		echo "-----------------"
 		sudo sbuild ${options} ${localdir}/incoming/${suite}/${debian_pkg_name}_${debian_version}/${dsc_file}
 
