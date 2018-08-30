@@ -1,0 +1,31 @@
+Source: grove-py
+Section: electronics
+Priority: optional
+Maintainer: Peter Yang <turmary@126.com>
+Build-Depends: debhelper (>= 9), python, python-setuptools, python-distutils-extra,
+               python3, python3-setuptools, python3-distutils-extra
+Standards-Version: 3.9.8
+Homepage: https://github.com/Seeed-Studio/grove.py
+#Vcs-Git: https://anonscm.debian.org/collab-maint/grove.py.git
+#Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/grove.py.git
+
+Package: python-grove-py
+Architecture: all
+Depends: python-mraa, python-upm
+Description: Python2 library for Seeedstudio Grove Devices on Raspberry Pi.
+ After installing `grove-py`, A few CLI commands with prefix `grove_` is available,
+ such as `grove_led`, `grove_button`, `grove_ultrasonic_ranger` and etc. 
+ For I2C Grove devices, the default bus is used (I2C 1 on Pi).
+ For digital input & output Grove devices, 
+ pin numbers should be provided as the arguments of these commands.
+
+Package: python3-grove-py
+Architecture: all
+Depends: python3-mraa, python3-upm
+Description: Python3 library for Seeedstudio Grove Devices on Raspberry Pi.
+ After installing `grove-py`, A few CLI commands with prefix `grove_` is available,
+ such as `grove_led`, `grove_button`, `grove_ultrasonic_ranger` and etc. 
+ For I2C Grove devices, the default bus is used (I2C 1 on Pi).
+ For digital input & output Grove devices, 
+ pin numbers should be provided as the arguments of these commands.
+

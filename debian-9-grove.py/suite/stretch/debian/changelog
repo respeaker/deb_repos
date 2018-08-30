@@ -1,0 +1,6 @@
+grove-py (0.4-git20180830-0pi) unstable; urgency=medium
+
+  * Initial release, with simple demo for Buzzer, PIR Motion Sensor, I2C Motor
+    Driver, Temperature&Humidity Sensor
+
+ -- Peter Yang <turmary@126.com>  Mon, 27 Aug 2018 12:50:18 +0000

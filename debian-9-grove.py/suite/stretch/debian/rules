@@ -1,0 +1,45 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+export DH_VERBOSE = 1
+export DH_OPTIONS = -v
+
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# see ENVIRONMENT in dpkg-buildflags(1)
+# package maintainers to append CFLAGS
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+# package maintainers to append LDFLAGS
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+PACKAGE2_NAME = python-grove-py
+PACKAGE3_NAME = python3-grove-py
+
+PYVERS = $(shell pyversions -vr   2>/dev/null )
+PYVER = $(shell pyversions  -vd   2>/dev/null )
+PY3VERS = $(shell py3versions -vr 2>/dev/null )
+PY3VER = $(shell py3versions -vd  2>/dev/null )
+
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	rm -rf build
+	rm -f po/*.pot
+	rm -rf *.egg-info
+	dh_auto_clean
+
+override_dh_auto_install: ${PY3VERS:%=python-install%} ${PYVERS:%=python-install%} 
+
+# Per Python version logic -- install, test, move .so into -lib
+python-install%:
+	python$* setup.py install --install-layout=deb --root=$(CURDIR)/debian/tmp
+
+# dh_make generated override targets
+# This is example for Cmake (See https://bugs.debian.org/641051 )
+#override_dh_auto_configure:
+#	dh_auto_configure -- #	-DCMAKE_LIBRARY_PATH=$(DEB_HOST_MULTIARCH)
+
