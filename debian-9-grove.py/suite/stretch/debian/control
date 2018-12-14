@@ -11,7 +11,7 @@ Homepage: https://github.com/Seeed-Studio/grove.py
 
 Package: python-grove-py
 Architecture: all
-Depends: python-mraa, python-upm
+Depends: python-mraa, python-upm, python-rpi.gpio
 Description: Python2 library for Seeedstudio Grove Devices on Raspberry Pi.
  After installing `grove-py`, A few CLI commands with prefix `grove_` is available,
  such as `grove_led`, `grove_button`, `grove_ultrasonic_ranger` and etc. 
@@ -21,7 +21,7 @@ Description: Python2 library for Seeedstudio Grove Devices on Raspberry Pi.
 
 Package: python3-grove-py
 Architecture: all
-Depends: python3-mraa, python3-upm
+Depends: python3-mraa, python3-upm, python3-rpi.gpio
 Description: Python3 library for Seeedstudio Grove Devices on Raspberry Pi.
  After installing `grove-py`, A few CLI commands with prefix `grove_` is available,
  such as `grove_led`, `grove_button`, `grove_ultrasonic_ranger` and etc. 

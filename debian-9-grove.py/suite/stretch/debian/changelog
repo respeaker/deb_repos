@@ -1,3 +1,10 @@
+grove-py (0.5-git20181011-0pi) unstable; urgency=medium
+
+  * RaspberryPi 3B+ suuported
+    I2C motor driver with DC-Motor 24BYJ48
+
+ -- Peter Yang <turmary@126.com>  Thu, 11 Oct 2018 12:50:18 +0000
+
 grove-py (0.4-git20180830-0pi) unstable; urgency=medium
 
   * Initial release, with simple demo for Buzzer, PIR Motion Sensor, I2C Motor

@@ -1,3 +1,15 @@
+mraa (1.9.0-git20181030-pi20181030) stretch; urgency=low
+
+  * Default Raspberry Pi version - 3B
+
+ -- turmary <turmary@126.com>  Thu, 11 Oct 2018 11:02:30 -0500
+
+mraa (1.9.0-git20181011-pi20181011) stretch; urgency=low
+
+  * Rebuild for Raspberry Pi 3B+, fix getGpioLookup
+
+ -- turmary <turmary@126.com>  Thu, 11 Oct 2018 11:02:30 -0500
+
 mraa (1.9.0-git20180813-pi20180813) stretch; urgency=low
 
   * Rebuild for Raspberry Pi 3B
