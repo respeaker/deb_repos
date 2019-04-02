@@ -152,10 +152,8 @@ runner () {
 
 start_run () {
 	dist="debian"
-	deb_arch="armhf"
-	suite="jessie" ; runner
-	suite="stretch" ; runner
-	suite="buster" ; runner
+	deb_arch="arm64"
+	suite="mendel-beaker" ; runner
 
 	dist="ubuntu"
 	suite="xenial" ; runner

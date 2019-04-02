@@ -74,13 +74,8 @@ runner () {
 }
 
 start_run () {
-	deb_arch="armhf"
-	suite="jessie" ; runner
-	suite="stretch" ; runner
-	suite="buster" ; runner
-	suite="xenial" ; runner
-	suite="zesty" ; runner
-	suite="artful" ; runner
+	deb_arch="arm64"
+	suite="mendel-beaker" ; runner
 }
 
 cleanup () {

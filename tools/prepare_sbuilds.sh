@@ -5,10 +5,10 @@ if ! id | grep -q root; then
 	exit
 fi
 
-#proxy=""
-proxy="apt-proxy:3142/"
+proxy=""
+#proxy="192.168.4.48:3142/"
 
-debian_server="deb.debian.org/debian"
+debian_server="192.168.4.48/mendel"
 ubuntu_server="ports.ubuntu.com"
 
 builder=`cat /etc/hostname`
@@ -42,6 +42,14 @@ echo "\$distribution = 'stretch';" >> ~/.sbuildrc
 
 mirror="http://${proxy}${debian_server}"
 deboot="sid"
+
+	dist="mendel-beaker"
+	unset flavor
+	arch="arm64"
+	options="--exclude=debfoster"
+	setup_update_sbuild
+
+	exit 0
 
 dist="jessie"
 unset flavor

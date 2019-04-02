@@ -4,7 +4,7 @@
 
 package_name="upm"
 debian_pkg_name="${package_name}"
-package_version="1.6.0-git20180813"
+package_version="1.6.0-git20190402"
 package_source="${package_name}_${package_version}.orig.tar.xz"
 src_dir="${package_name}_${package_version}"
 
@@ -18,4 +18,4 @@ debian_patch=""
 debian_diff=""
 local_patch="0pi"
 
-stretch_version="20180813"
+mendel_beaker_version="20190402"

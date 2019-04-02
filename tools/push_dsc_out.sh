@@ -26,6 +26,10 @@ runner () {
 
 start_run () {
 	dist="debian"
+	deb_arch="arm64"
+	suite="mendel-beaker" ; runner
+	: <<\EOF
+	dist="debian"
 	deb_arch="armhf"
 	suite="jessie" ; runner
 	suite="stretch" ; runner
@@ -35,6 +39,7 @@ start_run () {
 	suite="xenial" ; runner
 	suite="zesty" ; runner
 	suite="artful" ; runner
+EOF
 }
 
 start_run
