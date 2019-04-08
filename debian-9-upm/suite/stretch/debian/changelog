@@ -1,3 +1,9 @@
+upm (1.6.0-git20190404-pi20190404) stretch; urgency=medium
+
+  * Rebuild for compatible to all Raspberry Pi(armv6)
+
+ -- turmary <turmary@126.com>  Thu, 04 Apr 2019 11:02:30 -0500
+
 upm (1.6.0-git20180813-pi20180813) stretch; urgency=medium
 
   * Rebuild for Raspberry Pi 3B

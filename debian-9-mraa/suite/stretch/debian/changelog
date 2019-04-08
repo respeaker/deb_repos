@@ -1,3 +1,9 @@
+mraa (1.9.0-git20190404-pi20190404) stretch; urgency=low
+
+  * Rebuild for compatible to all Raspberry Pi(armv6)
+
+ -- turmary <turmary@126.com>  Thu, 04 Apr 2019 11:02:30 -0500
+
 mraa (1.9.0-git20181030-pi20181030) stretch; urgency=low
 
   * Default Raspberry Pi version - 3B
