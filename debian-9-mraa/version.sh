@@ -4,7 +4,7 @@
 
 package_name="mraa"
 debian_pkg_name="${package_name}"
-package_version="1.9.0-git20190404"
+package_version="1.9.0-git20191021"
 package_source="${package_name}_${package_version}.orig.tar.xz"
 src_dir="${package_name}_${package_version}"
 
@@ -18,4 +18,4 @@ debian_patch=""
 debian_diff=""
 local_patch="0pi"
 
-stretch_version="20190404"
+stretch_version="20191021"

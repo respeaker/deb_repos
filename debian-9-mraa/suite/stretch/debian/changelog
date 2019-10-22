@@ -1,3 +1,9 @@
+mraa (1.9.0-git20191021-pi20191021) stretch; urgency=low
+
+  * Fix python3 installation path to /usr/lib/python3/dist-packages
+
+ -- turmary <turmary@126.com>  Mon, 21 Oct 2019 11:02:30 -0500
+
 mraa (1.9.0-git20190404-pi20190404) stretch; urgency=low
 
   * Rebuild for compatible to all Raspberry Pi(armv6)
